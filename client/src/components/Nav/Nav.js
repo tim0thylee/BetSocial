@@ -10,7 +10,10 @@ const Nav = () => (
           <span className="icon-bar" />
         </button>
         <a href="/" className="navbar-brand">
-          React Reading List
+          Login
+        </a>
+        <a href="/register" className="navbar-brand">
+          Register
         </a>
       </div>
     </div>
