@@ -5,15 +5,17 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, FormBtn } from "../../components/Form";
 
-class Bet extends Component {
+class Bets extends Component {
   state = {
-    username: [],
+    bets: [],
+    better: "",
     wager: "",
-    validator: "",
+    better_two:"",
     description: "",
-    endDate:""
+    validator: "",
+    status: false
   };
 
   componentDidMount() {
@@ -21,9 +23,9 @@ class Bet extends Component {
   }
 
   loadBet = () => {
-    API.getBet()
+    API.getBets()
       .then(res =>
-        this.setState({ bet: res.data, username: "", wager: "", description:""})
+        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description:"", validator: "", status: false})
       )
       .catch(err => console.log(err));
   };
@@ -43,11 +45,14 @@ class Bet extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.username && this.state.wager) {
-      API.saveBet({
-        username: this.state.username,
+    if (this.state.better && this.state.wager && this.state.better_two && this.state.description) {
+      API.saveBets({
+        better: this.state.better,
         wager: this.state.wager,
-        description: this.state.description
+        better_two: this.state.better_two,
+        description: this.state.description,
+        validator: this.state.validator,
+        status: false
       })
         .then(res => this.loadBet())
         .catch(err => console.log(err));
@@ -64,10 +69,16 @@ class Bet extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.username}
+                value={this.state.better}
                 onChange={this.handleInputChange}
-                name="username"
-                placeholder="UserName (required)"
+                name="better"
+                placeholder="better (required)"
+              />
+              <Input
+                value={this.state.better_two}
+                onChange={this.handleInputChange}
+                name="better_two"
+                placeholder="better two (required)"
               />
               <Input
                 value={this.state.wager}
@@ -75,14 +86,20 @@ class Bet extends Component {
                 name="wager"
                 placeholder="Wager (required)"
               />
-              <TextArea
+              <Input
                 value={this.state.description}
                 onChange={this.handleInputChange}
                 name="description"
-                placeholder="Description (Optional)"
+                placeholder="Description (required)"
+              />
+              <Input
+                value={this.state.validator}
+                onChange={this.handleInputChange}
+                name="description"
+                placeholder="Description (required)"
               />
               <FormBtn
-                disabled={!(this.state.username && this.state.wager)}
+                disabled={!(this.state.better && this.state.better_two && this.state.wager && this.state.description)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Bet
@@ -91,18 +108,18 @@ class Bet extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Bet On My List</h1>
+              <h1>Open Bets</h1>
             </Jumbotron>
-            {this.statefriendslength ? (
+            {this.state.bets.length ? (
               <List>
-                {this.statefriendsmap(friends => (
-                  <ListItem key={friends._id}>
-                    <Link to={"/friends/" + friends._id}>
+                {this.state.bets.map (bet => (
+                  <ListItem key={bet._id}>
+                    <Link to={"/bets/" + bet._id}>
                       <strong>
-                        {friends.title} by {friends.author}
+                        {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(friends._id)} />
+                    <DeleteBtn onClick={() => this.deleteBets(bet._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -116,4 +133,4 @@ class Bet extends Component {
   }
 }
 
-export default Bet;
+export default Bets;
