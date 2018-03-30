@@ -15,6 +15,12 @@ const Nav = () => (
         <a href="/bets" className="navbar-brand">
           Bets
         </a>
+        <a href="/activity" className="navbar-brand">
+          Activity
+        </a>
+        <a href="/friends" className="navbar-brand">
+          Friends
+        </a>
       </div>
     </div>
   </nav>
