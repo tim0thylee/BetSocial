@@ -15,10 +15,7 @@ export default {
   },
   //Updates a bet
   update: function (id, betData) {
-<<<<<<< HEAD
      return axios.put("/api/bets/"+ id, betData)
-=======
-     return axios.put("/api/bets"+ id, betData)
   },
 
   // Gets all bets
