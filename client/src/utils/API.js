@@ -16,5 +16,18 @@ export default {
   //Updates a bet
   update: function (id, betData) {
      return axios.put("/api/bets"+ id, betData)
+  },
+
+  // Gets all bets
+  getUsers: function () {
+    return axios.get("/api/users");
+  },
+  // Gets the bet with the given id
+  getUser: function (id) {
+    return axios.get("/api/users/" + id);
+  },
+  // Saves a bet to the database
+  saveUser: function (userData) {
+    return axios.post("/api/user", userData);
   }
-};
+}
