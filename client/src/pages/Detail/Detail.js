@@ -4,16 +4,18 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 
+
 class Detail extends Component {
   state = {
     bet: {}
   };
- 
+
   componentDidMount() {
     API.getBet(this.props.match.params.id)
       .then(res => this.setState({ bet: res.data }))
       .catch(err => console.log(err));
   }
+
 
   render() {
     return (
@@ -39,6 +41,12 @@ class Detail extends Component {
               <h1>Terms</h1>
               <p>
                 {this.state.bet.description}
+              </p>
+            </article>
+            <article>
+              <h1>Validator (if used)</h1>
+              <p>
+                {this.state.bet.validator}
               </p>
             </article>
           </Col>

@@ -11,6 +11,5 @@ router
   .route("/:id")
   .get(betsController.findById)
   .put(betsController.update)
-  .delete(betsController.remove);
 
 module.exports = router;
