@@ -3,9 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bets from "./pages/Bets";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import Register from "./pages/Register";
 import Friends from "./pages/Friends"
 import Nav from "./components/Nav";
-import Tablist from "./components/Tablist"
+import Tablist from "./components/Tablist";
+// import PrivateRoute from "./components/PrivateRoute";
+
 
 const App = () => (
   <Router>
@@ -14,9 +19,10 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Bets} />
         <Route exact path="/bets/:id" component={Detail} />
-        <Route exact path='/Detail' component={Detail} />
         <Route exact path="/Friends" component={Friends} />
-        <Route exact path="/Bets" component={Bets} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/logout" component={Logout} />
+        <Route exact path="/register" component={Register} />
         <Route component={NoMatch} />
       </Switch>
       <Tablist />

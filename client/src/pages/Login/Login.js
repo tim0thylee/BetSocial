@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
-import loginAPI from "../../utils/loginAPI";
+import API from "../../utils/API";
+import Auth from '../../utils/Auth';
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
@@ -8,7 +9,29 @@ import { Input, FormBtn } from "../../components/Form";
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    errorMessage: null
+  };
+
+  componentDidMount() {
+  }
+
+  authenticate = () => {
+    const userData = {
+      username: this.state.username,
+      password: this.state.password
+    }
+
+    API.authenticateUser(userData)
+      .then(res => {
+        // clear error message
+        this.setState({ errorMessage: null });
+        Auth.authenticateUser(res.data.token);
+
+        // hard redirect to / to reload all the state and nav
+        window.location.href = "/";
+      })
+      .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };
 
   handleInputChange = event => {
@@ -18,18 +41,18 @@ class Login extends Component {
     });
   };
 
-//   handleFormSubmit = event => {
-//     event.preventDefault();
-//     if (this.state.username && this.state.password) {
-//       API.saveBook({
-//         title: this.state.title,
-//         author: this.state.author,
-//         synopsis: this.state.synopsis
-//       })
-//         .then(res => this.loadBooks())
-//         .catch(err => console.log(err));
-//     }
-//   };
+  handleFocus = event => {
+    event.target.select();
+  };
+
+  handleLogin = event => {
+    event.preventDefault();
+    if (this.state.username && this.state.password && this.state.password.length >= 6) {
+      this.authenticate();
+    } else {
+      this.setState({ errorMessage: "Please enter valid username and password to sign in." })
+    }
+  };
 
   render() {
     return (
@@ -37,7 +60,7 @@ class Login extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>Login</h1>
+              <h1 className="h4 mb-3 font-weight-normal">Please Login</h1>
             </Jumbotron>
             <form>
               <Input
@@ -45,25 +68,44 @@ class Login extends Component {
                 onChange={this.handleInputChange}
                 name="username"
                 placeholder="username (required)"
+                className="form-control"
+                required=""
+                autoFocus={true}
               />
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
+                type="password"
                 placeholder="password (required)"
+                className="form-control"
+                required=""
+                autoFocus={true}
               />
-              <FormBtn
-                disabled={!(this.state.username && this.state.password)}
-                onClick={this.handleFormSubmit}
-              >
-                Login
+              <div className="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="remember-me" /> Remember me
+            </label>
+              </div>
+              <div className="checkbox mb-3 text-danger">
+                {this.state.errorMessage}
+              </div>
+                <FormBtn
+                  disabled={!(this.state.username && this.state.password)}
+                  onClick={this.handleLogin}
+                >
+                  Login
               </FormBtn>
+                <p className="mt-5 mb-3">
+                  Don't have an account?&nbsp;&nbsp;
+            <Link to={"/register"}>Sign Up</Link>
+                </p>
             </form>
           </Col>
         </Row>
       </Container>
-    );
-  }
-}
-
-export default Login;
+        );
+      }
+    }
+    
+    export default Login;

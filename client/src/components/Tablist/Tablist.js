@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Paper, Tabs } from 'material-ui';
 import { Tab } from 'material-ui/Tabs';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 class Tablist extends Component {
@@ -22,7 +21,7 @@ componentDidMount() {
     case '/Friends':
       value = 1;
       break;
-    case '/Bets':
+    case '/':
       value = 2;
       break;
   }
@@ -50,7 +49,7 @@ handleChange = (event, value) => {
         >
         <Tab label="Detail" href="Detail"/>
         <Tab label="Friends" href="Friends"/>
-        <Tab label="Bets" href="Bets"/>
+        <Tab label="Bets" href="/"/>
       </Tabs>
     </Paper> 
     </div>
