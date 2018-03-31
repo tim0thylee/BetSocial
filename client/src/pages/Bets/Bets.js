@@ -30,10 +30,14 @@ class Bets extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteBet = id => {
-    API.deleteBet(id)
+  closeBet = id => {
+    API.update(id, {
+      status: true
+    })
       .then(res => this.loadBet())
       .catch(err => console.log(err));
+
+      console.log('test')
   };
 
   handleInputChange = event => {
@@ -95,8 +99,8 @@ class Bets extends Component {
               <Input
                 value={this.state.validator}
                 onChange={this.handleInputChange}
-                name="description"
-                placeholder="Description (required)"
+                name="validator"
+                placeholder="validator (optional)"
               />
               <FormBtn
                 disabled={!(this.state.better && this.state.better_two && this.state.wager && this.state.description)}
@@ -119,7 +123,7 @@ class Bets extends Component {
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBets(bet._id)} />
+                    <DeleteBtn onClick={() => this.closeBet(bet._id)} />
                   </ListItem>
                 ))}
               </List>
