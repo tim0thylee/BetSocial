@@ -7,7 +7,7 @@ const betsSchema = new Schema({
   better_two: {type: String, required: true},
   validator: {type: String},
   description: {type: String, required: true},
-  status: {type: Boolean, default: false},
+  closed: {type: Boolean, default: false},
   endDate: {type: Date}
 });
 

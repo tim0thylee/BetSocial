@@ -33,21 +33,27 @@ class Detail extends Component {
           <Col size="md-10 md-offset-1">
             <article>
               <h1>Wager</h1>
-              <p>
+              <h4>
                 {this.state.bet.wager}
-              </p>
+              </h4>
             </article>
             <article>
               <h1>Terms</h1>
-              <p>
+              <h4>
                 {this.state.bet.description}
-              </p>
+              </h4>
             </article>
             <article>
               <h1>Validator (if used)</h1>
-              <p>
+              <h4>
                 {this.state.bet.validator}
-              </p>
+              </h4>
+            </article>
+            <article>
+              <h1>Closed?</h1>
+              <h4>
+                {String(this.state.bet.closed)}
+              </h4>
             </article>
           </Col>
         </Row>

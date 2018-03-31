@@ -15,7 +15,7 @@ class Bets extends Component {
     better_two:"",
     description: "",
     validator: "",
-    status: false
+    closed: false
   };
 
   componentDidMount() {
@@ -25,14 +25,14 @@ class Bets extends Component {
   loadBet = () => {
     API.getBets()
       .then(res =>
-        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description:"", validator: "", status: false})
+        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description:"", validator: "", closed: false})
       )
       .catch(err => console.log(err));
   };
 
   closeBet = id => {
     API.update(id, {
-      status: true
+      closed: true
     })
       .then(res => this.loadBet())
       .catch(err => console.log(err));
@@ -56,7 +56,7 @@ class Bets extends Component {
         better_two: this.state.better_two,
         description: this.state.description,
         validator: this.state.validator,
-        status: false
+        closed: false
       })
         .then(res => this.loadBet())
         .catch(err => console.log(err));
@@ -120,7 +120,7 @@ class Bets extends Component {
                   <ListItem key={bet._id}>
                     <Link to={"/bets/" + bet._id}>
                       <strong>
-                        {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}
+                        {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.closeBet(bet._id)} />
