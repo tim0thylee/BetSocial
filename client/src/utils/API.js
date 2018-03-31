@@ -29,6 +29,5 @@ export default {
   // Saves a bet to the database
   saveUser: function (userData) {
     return axios.post("/api/user", userData);
->>>>>>> 8454476ab902219a03e9f4bb392192baffba9294
   }
 }
