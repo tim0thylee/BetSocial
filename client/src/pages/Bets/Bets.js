@@ -7,10 +7,6 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
-import SearchFormTwo from "../../components/SearchFormTwo";
-import SearchFormThree from "../../components/SearchFormThree";
-
-
 
 
 class Bets extends Component {
@@ -41,7 +37,7 @@ class Bets extends Component {
 
   loadUsers = () => {
     API.getUsers()
-      .then(res => 
+      .then(res =>
         this.setState({ users: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
       )
       .catch(err => console.log(err));
@@ -89,19 +85,23 @@ class Bets extends Component {
               <h1>Make a bet?</h1>
             </Jumbotron>
             <form>
-            <label htmlFor="Better">Better:</label>
+              <label htmlFor="Better">Better:</label>
               <SearchForm
                 value={this.state.better}
                 onChange={this.handleInputChange}
                 name="better"
                 users={this.state.users}
+                placeholder="Type a better (required)"
+                list="users"
               />
-            <label htmlFor="Better">Better 2:</label>
+              <label htmlFor="Better">Better 2:</label>
               <SearchForm
                 value={this.state.better_two}
                 onChange={this.handleInputChange}
                 name="better_two"
                 users={this.state.users}
+                placeholder="Type a second better (required)"
+                list="users"
               />
               <Input
                 value={this.state.wager}
@@ -120,6 +120,8 @@ class Bets extends Component {
                 onChange={this.handleInputChange}
                 name="validator"
                 users={this.state.users}
+                placeholder="Type a validator (optional)"
+                list="users"
               />
               <FormBtn
                 disabled={!(this.state.better && this.state.better_two && this.state.wager && this.state.description)}
