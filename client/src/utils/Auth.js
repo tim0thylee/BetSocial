@@ -15,6 +15,7 @@ class Auth {
      * @returns {boolean}
      */
     static isUserAuthenticated() {
+      console.log("success")
       return localStorage.getItem('token') !== null;
     }
   
@@ -34,6 +35,11 @@ class Auth {
   
     static getToken() {
       return localStorage.getItem('token');
+    }
+
+    static test() {
+      console.log('test')
+      return false;
     }
   
   }

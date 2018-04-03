@@ -32,7 +32,6 @@ class Friends extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.users)
     if (this.state.friends) {
       API.saveUser({
         friends: this.state.friends
@@ -71,7 +70,7 @@ class Friends extends Component {
                 {this.state.users.map(user => (
                   <ListItem key={user._id}>
                       <strong>
-                       {user.name}
+                       {user.username}
                       </strong>
                   </ListItem>
                 ))}

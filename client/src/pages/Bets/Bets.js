@@ -6,13 +6,20 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
+import SearchForm from "../../components/SearchForm";
+import SearchFormTwo from "../../components/SearchFormTwo";
+import SearchFormThree from "../../components/SearchFormThree";
+
+
+
 
 class Bets extends Component {
   state = {
+    users: [],
     bets: [],
     better: "",
     wager: "",
-    better_two:"",
+    better_two: "",
     description: "",
     validator: "",
     closed: false
@@ -20,12 +27,22 @@ class Bets extends Component {
 
   componentDidMount() {
     this.loadBet();
+    this.loadUsers();
   }
 
   loadBet = () => {
     API.getBets()
       .then(res =>
-        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description:"", validator: "", closed: false})
+        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
+      )
+      .catch(err => console.log(err));
+  };
+
+
+  loadUsers = () => {
+    API.getUsers()
+      .then(res => 
+        this.setState({ users: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
       )
       .catch(err => console.log(err));
   };
@@ -37,7 +54,7 @@ class Bets extends Component {
       .then(res => this.loadBet())
       .catch(err => console.log(err));
 
-      console.log('test')
+    console.log('test')
   };
 
   handleInputChange = event => {
@@ -72,17 +89,19 @@ class Bets extends Component {
               <h1>Make a bet?</h1>
             </Jumbotron>
             <form>
-              <Input
+            <label htmlFor="Better">Better:</label>
+              <SearchForm
                 value={this.state.better}
                 onChange={this.handleInputChange}
                 name="better"
-                placeholder="better (required)"
+                users={this.state.users}
               />
-              <Input
+            <label htmlFor="Better">Better 2:</label>
+              <SearchForm
                 value={this.state.better_two}
                 onChange={this.handleInputChange}
                 name="better_two"
-                placeholder="better two (required)"
+                users={this.state.users}
               />
               <Input
                 value={this.state.wager}
@@ -96,11 +115,11 @@ class Bets extends Component {
                 name="description"
                 placeholder="Description (required)"
               />
-              <Input
+              <SearchForm
                 value={this.state.validator}
                 onChange={this.handleInputChange}
                 name="validator"
-                placeholder="validator (optional)"
+                users={this.state.users}
               />
               <FormBtn
                 disabled={!(this.state.better && this.state.better_two && this.state.wager && this.state.description)}
@@ -116,20 +135,20 @@ class Bets extends Component {
             </Jumbotron>
             {this.state.bets.length ? (
               <List>
-                {this.state.bets.map (bet => (
+                {this.state.bets.map(bet => (
                   <ListItem key={bet._id}>
                     <Link to={"/bets/" + bet._id}>
                       <strong>
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
+                      <DeleteBtn />
                     </Link>
-                    <DeleteBtn onClick={() => this.closeBet(bet._id)} />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
