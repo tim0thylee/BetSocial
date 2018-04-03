@@ -8,7 +8,7 @@ const SearchForm = props => (
        {...props}
       />
       <datalist id="users">
-        {props.users.map(user => <option value={user.username} key={user._id} />)}
+        {props.users.map(user => <option value={user.username} key={user._id}/>)}
       </datalist>
     </div>
 );

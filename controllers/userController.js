@@ -12,7 +12,7 @@ module.exports = {
   },
   findById: function(req, res) {
     db.User
-      .findOne({ googleId: req.params.id })
+      .findOne({ _id: req.params.id })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
