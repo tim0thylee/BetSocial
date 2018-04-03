@@ -7,6 +7,29 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+
+
+const styles = {
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
+
 
 
 class Bets extends Component {
@@ -81,9 +104,7 @@ class Bets extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
               <h1>Make a bet?</h1>
-            </Jumbotron>
             <form>
               <label htmlFor="Better">Better:</label>
               <SearchForm
@@ -103,18 +124,21 @@ class Bets extends Component {
                 placeholder="Type a second better (required)"
                 list="users"
               />
+              <label htmlFor="Wager">Wager</label>
               <Input
                 value={this.state.wager}
                 onChange={this.handleInputChange}
                 name="wager"
                 placeholder="Wager (required)"
               />
+              <label htmlFor="Description">Description</label>
               <Input
                 value={this.state.description}
                 onChange={this.handleInputChange}
                 name="description"
                 placeholder="Description (required)"
               />
+              <label htmlFor="validator">Validator</label>
               <SearchForm
                 value={this.state.validator}
                 onChange={this.handleInputChange}
@@ -132,20 +156,21 @@ class Bets extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
               <h1>Open Bets</h1>
-            </Jumbotron>
             {this.state.bets.length ? (
               <List>
                 {this.state.bets.map(bet => (
+                  <Card>
+                    <CardContent>
                   <ListItem key={bet._id}>
                     <Link to={"/bets/" + bet._id}>
                       <strong>
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
-                      <DeleteBtn />
                     </Link>
                   </ListItem>
+                  </CardContent>
+                  </Card>
                 ))}
               </List>
             ) : (
