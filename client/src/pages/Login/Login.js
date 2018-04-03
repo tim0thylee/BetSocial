@@ -29,7 +29,7 @@ class Login extends Component {
         Auth.authenticateUser(res.data.token);
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/";
+        window.location.href = "/bets";
       })
       .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };

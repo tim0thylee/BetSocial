@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import Auth from '../../utils/Auth';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 
@@ -29,7 +29,7 @@ class Register extends Component {
         Auth.authenticateUser(res.data.token);
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/";
+        window.location.href = "/login";
       })
       .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };
@@ -64,7 +64,7 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.username&& this.state.password && this.state.password.length >= 8) {
+    if (this.state.username&& this.state.password && this.state.password.length >= 6) {
       this.signUp();
     } else {
       this.setState({ errorMessage: "Please enter all required fields to sign up." })
@@ -101,6 +101,7 @@ class Register extends Component {
               />
               <div className="checkbox mb-3 text-danger">
                   {this.state.errorMessage}
+                  Password Must be at least 6 characters Long
               </div>
               <FormBtn
                 disabled={!(this.state.username && this.state.password && this.state.password.length >= 6)}

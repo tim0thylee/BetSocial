@@ -22,9 +22,9 @@ function validateSignupForm(payload) {
   }
 
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
+  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 6) {
     isFormValid = false;
-    errors.password = 'Password must have at least 8 characters.';
+    errors.password = 'Password must have at least 6 characters.';
   }
 
   if (!isFormValid) {
@@ -132,7 +132,7 @@ router.post('/login', (req, res, next) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Could not process the form.'
+        message: 'Incorrect Login Credentials. Please try again.'
       });
     }
 
