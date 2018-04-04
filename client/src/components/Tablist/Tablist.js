@@ -18,10 +18,10 @@ componentDidMount() {
     case '/Detail':
       value = 0;
       break;
-    case '/Friends':
+    case '/users':
       value = 1;
       break;
-    case '/bets':
+    case '/':
       value = 2;
       break;
   }
@@ -48,8 +48,8 @@ handleChange = (event, value) => {
         value={value} onChange={this.handleChange}
         >
         <Tab label="Detail" href="Detail"/>
-        <Tab label="Friends" href="Friends"/>
-        <Tab label="Bets" href="/bets"/>
+        <Tab label="Users" href="users"/>
+        <Tab label="Bets" href="/"/>
       </Tabs>
     </Paper> 
     </div>

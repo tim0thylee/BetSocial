@@ -10,7 +10,7 @@ import Profile from "./pages/Profile";
 import MyProfile from "./pages/MyProfile";
 // import Friends from "./pages/Friends"
 import Nav from "./components/Nav";
-// import Tablist from "./components/Tablist";
+import Tablist from "./components/Tablist";
 import PrivateRoute from "./pages/PrivateRoute";
 
 
@@ -28,7 +28,7 @@ const App = () => (
         <Route exact path="/register" component={Register} />
         <Route component={NoMatch} />
       </Switch>
-      {/* <Tablist /> */}
+      <Tablist />
     </div>
   </Router>
 );
