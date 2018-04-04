@@ -8,6 +8,9 @@ const Nav = () => (
         <a href="/" className="navbar-brand">
           Bet Social!
         </a>
+        <a href="/users" className="navbar-brand">
+          Users
+        </a>
         <a href="/login" className="navbar-brand">
           Login
         </a>
