@@ -37,11 +37,6 @@ class Auth {
       return localStorage.getItem('token');
     }
 
-    static test() {
-      console.log('test')
-      return false;
-    }
-  
   }
   
   export default Auth;
