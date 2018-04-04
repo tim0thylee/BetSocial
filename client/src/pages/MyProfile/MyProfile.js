@@ -18,10 +18,6 @@ class MyProfile extends Component {
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
 
-    // API.getBets(this.state.user.username)
-    // .then(res => this.setState({ bets: res.data }))
-    // .catch(err => console.log(err));
-
     // API.getBets({better_two: this.state.user.username})
     // .then(res => this.setState({ betsTwo: res.data }))
     // .catch(err => console.log(err));
@@ -31,11 +27,17 @@ class MyProfile extends Component {
     // .catch(err => console.log(err));
   }
   
-getBets() {
-  console.log({ better: this.state.user.username})
-
-  API.getBets({ better: this.state.user.username })
+getBets() {  
+  API.getUserBets(this.state.user.username)
   .then(res => this.setState({ bets: res.data }))
+  .catch(err => console.log(err));
+
+  API.getUserBetsTwo(this.state.user.username)
+  .then(res => this.setState({ betsTwo: res.data }))
+  .catch(err => console.log(err));
+
+  API.getValidatorBets(this.state.user.username)
+  .then(res => this.setState({ betsThree: res.data }))
   .catch(err => console.log(err));
 }
 
@@ -52,8 +54,8 @@ getBets() {
         <Row>
           <Col size="md-10 md-offset-1">
               <h1>Current Bets</h1>
+              <button onClick ={() => this.getBets()}>Show All bets</button>
               <h2>Bets Opened By You</h2>
-              <button onClick ={() => this.getBets()}>test</button>
               {this.state.bets.length ? (
               <List>
                 {this.state.bets.map(bet => (

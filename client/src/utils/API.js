@@ -2,8 +2,32 @@ import axios from "axios";
 
 export default {
   // Gets all bets
-  getBets: function () {
+  getBets: function (username) {
     return axios.get("/api/bets");
+  },
+  // Gets all user bets
+  getUserBets: function (username) {
+    return axios.get("/api/bets",{
+      params: {
+        better: username
+      }
+    });
+  },
+  // Gets all user bets
+  getUserBetsTwo: function (username) {
+    return axios.get("/api/bets",{
+      params: {
+        better_two: username
+      }
+    });
+  },
+  // Gets all user bets
+  getValidatorBets: function (username) {
+    return axios.get("/api/bets",{
+      params: {
+        validator: username
+      }
+    });
   },
   // Gets the bet with the given id
   getBet: function (id) {
