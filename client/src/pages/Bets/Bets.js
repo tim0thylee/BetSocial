@@ -18,7 +18,8 @@ class Bets extends Component {
     description: "",
     validator: "",
     closed: false,
-    current_user: []
+    current: "",
+    friends: []
   };
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class Bets extends Component {
   loadBet = () => {
     API.getBets()
       .then(res =>
-        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
+        this.setState({ bets: res.data })
       )
       .catch(err => console.log(err));
   };
@@ -39,7 +40,7 @@ class Bets extends Component {
   loadUsers = () => {
     API.getUsers()
       .then(res =>
-        this.setState({ users: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
+        this.setState({ users: res.data })
       )
       .catch(err => console.log(err));
   };
@@ -51,12 +52,10 @@ class Bets extends Component {
 
     API.getCurrentUser(user)
     .then( res => 
-      // console.log(res.data[0])
-      this.setState({ current_user: res.data[0] })
+      // console.log('username: ' + res.data[0].username + ", Friends: " + res.data[0].friends),
+      this.setState({ current: res.data[0].username, friends: res.data[0].friends })
     )
     .catch(err => console.log(err));
-
-    console.log(this.state.current_user);
   }
 
   handleInputChange = event => {

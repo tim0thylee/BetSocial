@@ -11,45 +11,51 @@ class MyProfile extends Component {
     betsTwo: {},
     betsThree: {}
   };
- 
+
   componentDidMount() {
     API.getUser(this.props.match.params.id)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   }
-  
-getBets() {  
 
-  API.getUserBets(this.state.user.username)
-  .then(res => this.setState({ bets: res.data }))
-  .catch(err => console.log(err));
+  getBets() {
 
-  API.getUserBetsTwo(this.state.user.username)
-  .then(res => this.setState({ betsTwo: res.data }))
-  .catch(err => console.log(err));
+    API.getUserBets(this.state.user.username)
+      .then(res => this.setState({ bets: res.data }))
+      .catch(err => console.log(err));
 
-  API.getValidatorBets(this.state.user.username)
-  .then(res => this.setState({ betsThree: res.data }))
-  .catch(err => console.log(err));
-}
+    API.getUserBetsTwo(this.state.user.username)
+      .then(res => this.setState({ betsTwo: res.data }))
+      .catch(err => console.log(err));
+
+    API.getValidatorBets(this.state.user.username)
+      .then(res => this.setState({ betsThree: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  checkState = event => {
+    event.preventDefault()
+    console.log(this.state.user.friends.length)
+  }
+
 
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size="md-12">
-              <h1>
-                {this.state.user.username}'s Profile 
+            <h1>
+              {this.state.user.username}'s Profile
               </h1>
-              {/* <button>Add Friend</button> */}
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1">
-              <h1>Current Bets</h1>
-              <button onClick ={() => this.getBets()}>Show All bets</button>
-              <h2>Bets Opened By You</h2>
-              {this.state.bets.length ? (
+          <Col size="md-6">
+            <h1>Current Bets</h1>
+            <button onClick={() => this.getBets()}>Show All bets</button>
+            <button onClick={this.checkState}>Check State</button>
+            <h2>Bets Opened By You</h2>
+            {this.state.bets.length ? (
               <List>
                 {this.state.bets.map(bet => (
                   <ListItem key={bet._id}>
@@ -64,8 +70,8 @@ getBets() {
             ) : (
                 <h3>No Results to Display</h3>
               )}
-                 <h2>Bets Wagered Against You</h2>
-              {this.state.betsTwo.length ? (
+            <h2>Bets Wagered Against You</h2>
+            {this.state.betsTwo.length ? (
               <List>
                 {this.state.betsTwo.map(bet => (
                   <ListItem key={bet._id}>
@@ -80,8 +86,8 @@ getBets() {
             ) : (
                 <h3>No Results to Display</h3>
               )}
-              <h2>Bets You Are Validating</h2>
-              {this.state.betsThree.length ? (
+            <h2>Bets You Are Validating</h2>
+            {this.state.betsThree.length ? (
               <List>
                 {this.state.betsThree.map(bet => (
                   <ListItem key={bet._id}>
@@ -97,8 +103,9 @@ getBets() {
                 <h3>No Results to Display</h3>
               )}
           </Col>
-        </Row>
-        <Row>
+          <Col size="md-6">
+            <h1>Friends</h1>
+          </Col>
         </Row>
       </Container>
     );
