@@ -10,7 +10,8 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
-    errorMessage: null
+    errorMessage: null,
+    user: {}
   };
 
   componentDidMount() {
@@ -26,10 +27,10 @@ class Login extends Component {
       .then(res => {
         // clear error message
         this.setState({ errorMessage: null });
-        Auth.authenticateUser(res.data.token);
+        Auth.authenticateUser(res.data.token, res.data.user.username);
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/bets";
+        window.location.href = "/";
       })
       .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };

@@ -1,31 +1,12 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
-// import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
 
-
-// const styles = {
-//   card: {
-//     minWidth: 275,
-//   },
-//   bullet: {
-//     display: 'inline-block',
-//     margin: '0 2px',
-//     transform: 'scale(0.8)',
-//   },
-//   title: {
-//     marginBottom: 16,
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// };
 
 class Bets extends Component {
   state = {
@@ -36,12 +17,14 @@ class Bets extends Component {
     better_two: "",
     description: "",
     validator: "",
-    closed: false
+    closed: false,
+    current_user: []
   };
 
   componentDidMount() {
     this.loadBet();
     this.loadUsers();
+    this.loadCurrent();
   }
 
   loadBet = () => {
@@ -61,15 +44,20 @@ class Bets extends Component {
       .catch(err => console.log(err));
   };
 
-  closeBet = id => {
-    API.update(id, {
-      closed: true
-    })
-      .then(res => this.loadBet())
-      .catch(err => console.log(err));
 
-    console.log('test')
-  };
+  loadCurrent = () => {
+
+    let user = Auth.getUser();
+
+    API.getCurrentUser(user)
+    .then( res => 
+      // console.log(res.data[0])
+      this.setState({ current_user: res.data[0] })
+    )
+    .catch(err => console.log(err));
+
+    console.log(this.state.current_user);
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -155,8 +143,7 @@ class Bets extends Component {
             {this.state.bets.length ? (
               <List>
                 {this.state.bets.map(bet => (
-                  <Card>
-                    <CardContent>
+
                   <ListItem key={bet._id}>
                     <Link to={"/bets/" + bet._id}>
                       <strong>
@@ -164,8 +151,6 @@ class Bets extends Component {
                       </strong>
                     </Link>
                   </ListItem>
-                  </CardContent>
-                  </Card>
                 ))}
               </List>
             ) : (

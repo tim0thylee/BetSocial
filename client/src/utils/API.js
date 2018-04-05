@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   // Gets all bets
-  getBets: function (username) {
+  getBets: function () {
     return axios.get("/api/bets");
   },
   // Gets all user bets
@@ -44,6 +44,14 @@ export default {
   // Gets all users
   getUsers: function () {
     return axios.get("/api/users");
+  },
+   // Gets all user bets
+   getCurrentUser: function (username) {
+    return axios.get("/api/users",{
+      params: {
+        username: username
+      }
+    });
   },
   // Gets the user with the given id
   getUser: function (id) {

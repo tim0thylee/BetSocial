@@ -3,6 +3,7 @@ const db = require("../models");
 // Defining methods for the betsController
 module.exports = {  
   findAll: function(req, res) {
+    console.log(req.query)
     db.Bets
       .find(req.query)
       .sort({ date: -1 })
