@@ -4,7 +4,7 @@ import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
 
-class Profile extends Component {
+class Users extends Component {
   state = {
     users: {}
   };
@@ -46,4 +46,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default Users;

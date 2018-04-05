@@ -3,18 +3,45 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+// import Auth from "../../utils/Auth";
+
 
 
 class Detail extends Component {
   state = {
-    bet: {}
+    bet: {},
+    user: {}
   };
 
   componentDidMount() {
     API.getBet(this.props.match.params.id)
       .then(res => this.setState({ bet: res.data }))
       .catch(err => console.log(err));
+
   }
+
+  loadBet = () => {
+    API.getBet(this.props.match.params.id)
+    .then(res => this.setState({ bet: res.data }))
+    .catch(err => console.log(err));
+  };
+
+  openBet = id => {
+    API.update(id, {
+      closed: false
+    })
+      .then(res => this.loadBet())
+      .catch(err => console.log(err));
+  };
+  
+
+  closeBet = id => {
+    API.update(id, {
+      closed: true
+    })
+      .then(res => this.loadBet())
+      .catch(err => console.log(err));
+  };
 
 
   render() {
@@ -30,7 +57,7 @@ class Detail extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1">
+          <Col size="md-6">
             <article>
               <h1>Wager</h1>
               <h4>
@@ -49,13 +76,29 @@ class Detail extends Component {
                 {this.state.bet.validator}
               </h4>
             </article>
+          </Col>
+          <Col size="md-6">
             <article>
               <h1>Closed?</h1>
               <h4>
                 {String(this.state.bet.closed)}
               </h4>
             </article>
-          </Col>
+            <article>
+              <h1>Winner:</h1>
+              <h4>
+                {this.state.bet.winner}
+              </h4>
+            </article>
+            <article>
+              <h1>Loser:</h1>
+              <h4>
+                {this.state.bet.loser}
+              </h4>
+            </article>
+            <button onClick ={() => this.closeBet(this.state.bet._id)}>Close Bet</button>
+            <button onClick ={() => this.openBet(this.state.bet._id)}>Open Bet</button>
+            </Col>
         </Row>
         <Row>
           <Col size="md-2">

@@ -17,6 +17,7 @@ module.exports = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
 
   console.log("In Auth Check middleware", config.jwtSecret);
+
   
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
@@ -32,6 +33,7 @@ module.exports = (req, res, next) => {
       }
       // pass user details onto next route
       req.user = user
+      
       return next();
     });
   });

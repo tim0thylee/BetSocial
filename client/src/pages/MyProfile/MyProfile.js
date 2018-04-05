@@ -4,7 +4,6 @@ import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
 
-
 class MyProfile extends Component {
   state = {
     user: {},
@@ -17,17 +16,10 @@ class MyProfile extends Component {
     API.getUser(this.props.match.params.id)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
-
-    // API.getBets({better_two: this.state.user.username})
-    // .then(res => this.setState({ betsTwo: res.data }))
-    // .catch(err => console.log(err));
-
-    // API.getBets({validator: this.state.user.username})
-    // .then(res => this.setState({ betsThree: res.data }))
-    // .catch(err => console.log(err));
   }
   
 getBets() {  
+
   API.getUserBets(this.state.user.username)
   .then(res => this.setState({ bets: res.data }))
   .catch(err => console.log(err));
@@ -47,8 +39,9 @@ getBets() {
         <Row>
           <Col size="md-12">
               <h1>
-                {this.state.user.username}'s Profile
+                {this.state.user.username}'s Profile 
               </h1>
+              {/* <button>Add Friend</button> */}
           </Col>
         </Row>
         <Row>
