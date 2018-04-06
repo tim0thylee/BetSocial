@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 class MyProfile extends Component {
   state = {
-    user: {},
+    user: "",
     bets: {},
     betsTwo: {},
     betsThree: {},
@@ -26,24 +26,24 @@ class MyProfile extends Component {
     API.getCurrentUser(user)
     .then( res => {
       this.setState({ user: res.data[0].username, friends: res.data[0].friends })
+      this.getBets()
+      this.getFriendsInfo()
       console.log(this.state.user)
-      // this.getBets()
-      // this.getFriendsInfo()
     })
     .catch(err => console.log(err));
   }
 
   getBets() {
 
-    API.getUserBets(this.state.user.username)
+    API.getUserBets(this.state.user)
       .then(res => this.setState({ bets: res.data }))
       .catch(err => console.log(err));
 
-    API.getUserBetsTwo(this.state.user.username)
+    API.getUserBetsTwo(this.state.user)
       .then(res => this.setState({ betsTwo: res.data }))
       .catch(err => console.log(err));
 
-    API.getValidatorBets(this.state.user.username)
+    API.getValidatorBets(this.state.user)
       .then(res => this.setState({ betsThree: res.data }))
       .catch(err => console.log(err));
   }
@@ -66,7 +66,7 @@ class MyProfile extends Component {
         <Row>
           <Col size="md-12">
             <h1>
-              {this.state.user.username}'s Profile
+              {this.state.user}'s Profile
               </h1>
           </Col>
         </Row>
