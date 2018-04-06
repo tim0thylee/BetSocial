@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bets from "./pages/Bets";
-import Activity from "./pages/Activity";
 import Detail from "./pages/Detail";
-import Friends from "./pages/Friends";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
