@@ -39,6 +39,12 @@ let Nav = () => (
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
+        <a href="/activity" className="navbar-brand">
+          Activity
+        </a>
+        <a href="/friends" className="navbar-brand">
+          Friends
+        </a>
       </div>
     </div>
   </nav>

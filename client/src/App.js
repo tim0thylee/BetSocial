@@ -11,7 +11,6 @@ import MyProfile from "./pages/MyProfile";
 import Nav from "./components/Nav";
 // import Tablist from "./components/Tablist";
 import PrivateRoute from "./pages/PrivateRoute";
-import LoggedIn from "./pages/LoggedIn";
 import Auth from "./utils/Auth";
 
 const App = () => (
