@@ -6,7 +6,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
-
+import Modal from "../../components/Modal";
 
 class Bets extends Component {
   state = {
@@ -143,6 +143,7 @@ class Bets extends Component {
               >
                 Submit Bet
               </FormBtn>
+              <Modal />
             </form>
           </Col>
           <Col size="md-6 sm-12">

@@ -5,6 +5,8 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 // import Auth from "../../utils/Auth";
 
+import Modal from "../../components/Modal";
+
 
 
 class Detail extends Component {
@@ -96,7 +98,7 @@ class Detail extends Component {
                 {this.state.bet.loser}
               </h4>
             </article>
-            <button onClick ={() => this.closeBet(this.state.bet._id)}>Close Bet</button>
+            <Modal />
             <button onClick ={() => this.openBet(this.state.bet._id)}>Open Bet</button>
             </Col>
         </Row>
