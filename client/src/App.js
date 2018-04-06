@@ -8,6 +8,7 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
 import MyProfile from "./pages/MyProfile";
+import UserProfile from "./pages/UserProfile";
 import Nav from "./components/Nav";
 // import Tablist from "./components/Tablist";
 import PrivateRoute from "./pages/PrivateRoute";
@@ -18,9 +19,10 @@ const App = () => (
     <div>
       <Nav />
       <Switch>
-        <PrivateRoute exact path="/users/:id" component={MyProfile} />
+        <PrivateRoute exact path="/users/:id" component={UserProfile} />
         <PrivateRoute exact path="/bets/:id" component={Detail} />
-        <PrivateRoute exact path="/" component={Bets} />
+        <PrivateRoute exact path="/" component={MyProfile} />
+        <PrivateRoute exact path="/bets" component={Bets} />
         <PrivateRoute exact path="/users" component={Users} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/logout" component={Logout} />
