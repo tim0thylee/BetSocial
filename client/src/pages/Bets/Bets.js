@@ -65,6 +65,7 @@ class Bets extends Component {
       }
     }
     this.setState({ users: this.state.users})
+    console.log(this.state.users)
   }
 
   handleInputChange = event => {
