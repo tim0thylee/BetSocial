@@ -6,6 +6,7 @@ import MainImage from "../MainImage"
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
+  <div>
     <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
@@ -15,11 +16,14 @@ let Nav = () => (
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
-        </div>
-        </div>
-        <MainImage />
-        <Tablist />
-        </nav>
+      </div>
+      </div>
+    </nav>
+    <div>
+      <MainImage />
+      <Tablist />
+    </div>
+  </div>
       ) : (
       <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
