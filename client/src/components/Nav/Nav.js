@@ -10,12 +10,6 @@ let Nav = () => (
         <a href="/" className="navbar-brand">
           Bet Social!
         </a>
-        <a href="/users" className="navbar-brand">
-          Users
-        </a>
-        <a href="/bets" className="navbar-brand">
-          Bets
-        </a>
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
