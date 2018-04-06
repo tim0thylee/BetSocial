@@ -1,7 +1,8 @@
-import "./Nav.css"
+import "./Nav.css";
 import React from "react";
-import Auth from '../../utils/Auth'
-import Tablist from '../Tablist'
+import Auth from '../../utils/Auth';
+import Tablist from '../Tablist';
+import MainImage from "../MainImage"
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
@@ -16,6 +17,7 @@ let Nav = () => (
         </a>
         </div>
         </div>
+        <MainImage />
         <Tablist />
         </nav>
       ) : (

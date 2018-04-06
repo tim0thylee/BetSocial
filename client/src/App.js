@@ -12,13 +12,12 @@ import UserProfile from "./pages/UserProfile";
 import Nav from "./components/Nav";
 import PrivateRoute from "./pages/PrivateRoute";
 import Auth from "./utils/Auth";
-import MainImage from "./components/MainImage"
+
 
 const App = () => (
 <Router>
     <div>
       <Nav />
-      <MainImage />
       <Switch>
         <PrivateRoute exact path="/users/:id" component={UserProfile} />
         <PrivateRoute exact path="/bets/:id" component={Detail} />
