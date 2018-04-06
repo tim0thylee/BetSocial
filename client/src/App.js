@@ -10,22 +10,15 @@ import Users from "./pages/Users";
 import MyProfile from "./pages/MyProfile";
 import UserProfile from "./pages/UserProfile";
 import Nav from "./components/Nav";
-<<<<<<< HEAD
-import Tablist from "./components/Tablist";
-import PrivateRoute from "./pages/PrivateRoute";
-import MainImage from "./components/MainImage"
-
-=======
 import PrivateRoute from "./pages/PrivateRoute";
 import Auth from "./utils/Auth";
->>>>>>> 2a3a90074c0bcf25ebb2ee7125c08862839f6877
+import MainImage from "./components/MainImage"
 
 const App = () => (
 <Router>
     <div>
       <Nav />
       <MainImage />
-      <Tablist />
       <Switch>
         <PrivateRoute exact path="/users/:id" component={UserProfile} />
         <PrivateRoute exact path="/bets/:id" component={Detail} />

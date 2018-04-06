@@ -1,6 +1,7 @@
 import "./Nav.css"
 import React from "react";
 import Auth from '../../utils/Auth'
+import Tablist from '../Tablist'
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
@@ -15,9 +16,10 @@ let Nav = () => (
         </a>
         </div>
         </div>
+        <Tablist />
         </nav>
       ) : (
-         <nav className="navbar navbar-inverse navbar-top">
+      <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
         <a href="/" className="navbar-brand">
