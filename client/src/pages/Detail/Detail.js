@@ -41,9 +41,26 @@ class Detail extends Component {
     API.update(id, {
       closed: true
     })
-      .then(res => this.loadBet())
+      .then(res => {
+        this.loadBet()
+        this.whoWon()
+      })          
       .catch(err => console.log(err));
   };
+
+  whoWon = () => {
+    console.log(this.state.bet)
+
+    let winner = prompt('Who Won?');
+
+    if(winner !== this.state.bet.better && winner !== this.state.bet.better_two){
+      console.log('you fucked up')
+      // alert('Enter a valid party!')
+    }
+    else {
+      console.log('The winner is '+ winner)
+    }    
+  }
 
 
   render() {
@@ -98,7 +115,9 @@ class Detail extends Component {
                 {this.state.bet.loser}
               </h4>
             </article>
+
             <Modal />
+            <button onClick ={() => this.whoWon()}>Close Bet</button>
             <button onClick ={() => this.openBet(this.state.bet._id)}>Open Bet</button>
             </Col>
         </Row>
