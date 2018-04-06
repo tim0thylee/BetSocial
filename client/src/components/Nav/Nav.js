@@ -7,6 +7,9 @@ const Nav = () => (
         <a href="/" className="navbar-brand">
           Bet Social!
         </a>
+        <a href="/bets" className="navbar-brand">
+          Bets
+        </a>
         <a href="/users" className="navbar-brand">
           Users
         </a>
