@@ -23,6 +23,7 @@ class UserProfile extends Component {
       })
       .catch(err => console.log(err));
   }
+  
 
   getBets() {
 
@@ -51,9 +52,8 @@ class UserProfile extends Component {
   }
 
 
-  checkState = event => {
-    // event.preventDefault();
-    console.log(this.state.friendsTwo[0]._id)
+  userLink = (id) => {
+    window.location = '/users/' + id
   }
 
 
@@ -107,11 +107,9 @@ class UserProfile extends Component {
               <List>
                 {this.state.betsThree.map(bet => (
                   <ListItem key={bet._id}>
-                    <Link to={"/bets/" + bet._id}>
                       <strong>
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
-                    </Link>
                   </ListItem>
                 ))}
               </List>
@@ -125,11 +123,9 @@ class UserProfile extends Component {
               <List>
                 {this.state.friendsTwo.map(friend => (
                   <ListItem key={friend._id}>
-                    <Link to={"/users/" + friend._id}>
-                      <strong>
+                      <strong onClick={() => this.userLink(friend._id)}>
                         {friend.username}
                       </strong>
-                    </Link>
                   </ListItem>
                 ))}
               </List>
