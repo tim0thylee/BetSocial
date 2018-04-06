@@ -6,7 +6,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
-
+import Modal from "../../components/Modal";
 
 class Bets extends Component {
   state = {
@@ -18,6 +18,8 @@ class Bets extends Component {
     description: "",
     validator: "",
     closed: false,
+    winner: '',
+    loser: '',
     current: "",
     friends: []
   };
@@ -71,7 +73,8 @@ class Bets extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      better: this.state.current
     });
   };
 
@@ -84,7 +87,9 @@ class Bets extends Component {
         better_two: this.state.better_two,
         description: this.state.description,
         validator: this.state.validator,
-        closed: false
+        closed: false,
+        winner: this.state.winner,
+        loser: this.state.loser
       })
         .then(res => this.loadBet())
         .catch(err => console.log(err));
@@ -143,6 +148,7 @@ class Bets extends Component {
               >
                 Submit Bet
               </FormBtn>
+              <Modal />
             </form>
           </Col>
           <Col size="md-6 sm-12">
