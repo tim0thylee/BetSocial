@@ -12,12 +12,15 @@ import MyProfile from "./pages/MyProfile";
 import Nav from "./components/Nav";
 import Tablist from "./components/Tablist";
 import PrivateRoute from "./pages/PrivateRoute";
+import MainImage from "./components/MainImage"
 
 
 const App = () => (
   <Router>
     <div>
       <Nav />
+      <MainImage />
+      <Tablist />
       <Switch>
         <PrivateRoute exact path="/users/:id" component={MyProfile} />
         <PrivateRoute exact path="/bets/:id" component={Detail} />
@@ -28,7 +31,6 @@ const App = () => (
         <Route exact path="/register" component={Register} />
         <Route component={NoMatch} />
       </Switch>
-      <Tablist />
     </div>
   </Router>
 );
