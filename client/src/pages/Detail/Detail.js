@@ -52,13 +52,12 @@ class Detail extends Component {
     console.log(this.state.bet)
 
     let winner = prompt('Who Won?');
-
     if(winner !== this.state.bet.better && winner !== this.state.bet.better_two){
-      console.log('you fucked up')
-      // alert('Enter a valid party!')
+      alert('Enter a valid party!')
     }
     else {
-      console.log('The winner is '+ winner)
+      // this.setState({ this.bet.winner: winner })
+      console.log(this.state.winner)
     }    
   }
 
