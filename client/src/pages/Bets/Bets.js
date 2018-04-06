@@ -24,14 +24,15 @@ class Bets extends Component {
 
   componentDidMount() {
     this.loadBet();
-    this.loadUsers();
-    this.loadCurrent();
   }
 
   loadBet = () => {
     API.getBets()
-      .then(res =>
+      .then(res =>{
         this.setState({ bets: res.data })
+        this.loadUsers()
+        this.loadCurrent()
+      }
       )
       .catch(err => console.log(err));
   };
@@ -45,17 +46,25 @@ class Bets extends Component {
       .catch(err => console.log(err));
   };
 
-
   loadCurrent = () => {
 
     let user = Auth.getUser();
 
     API.getCurrentUser(user)
-    .then( res => 
-      // console.log('username: ' + res.data[0].username + ", Friends: " + res.data[0].friends),
+    .then( res => {
       this.setState({ current: res.data[0].username, friends: res.data[0].friends })
-    )
+      this.cleanUsers()
+    })
     .catch(err => console.log(err));
+  }
+
+  cleanUsers = () => {
+    for (let i = 0; i < this.state.users.length; i++){
+      if (this.state.users[i].username === this.state.current ){
+        this.state.users.splice(i, 1)
+      }
+    }
+    this.setState({ users: this.state.users})
   }
 
   handleInputChange = event => {
@@ -89,13 +98,11 @@ class Bets extends Component {
               <h1>Make a bet?</h1>
             <form>
               <label htmlFor="Better">Better:</label>
-              <SearchForm
-                value={this.state.better}
-                onChange={this.handleInputChange}
+              <Input
+                value={this.state.current}
                 name="better"
-                users={this.state.users}
-                placeholder="Type a better (required)"
-                list="users"
+                users={this.state.current}
+                placeholder={this.state.current}
               />
               <label htmlFor="Better">Better 2:</label>
               <SearchForm

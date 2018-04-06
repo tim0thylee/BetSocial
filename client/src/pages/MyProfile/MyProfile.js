@@ -1,39 +1,63 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
 
 class MyProfile extends Component {
   state = {
-    user: {},
+    user: "",
     bets: {},
     betsTwo: {},
     betsThree: {},
-    friends: {}
+    friends: {},
+    friendsTwo: {}
   };
 
   componentDidMount() {
-    API.getUser(this.props.match.params.id)
-      .then(res => this.setState({ user: res.data }))
-      .catch(err => console.log(err));
+    this.loadCurrent();
+  }
+
+  loadCurrent = () => {
+
+    let user = Auth.getUser();
+
+    API.getCurrentUser(user)
+    .then( res => {
+      this.setState({ user: res.data[0].username, friends: res.data[0].friends })
+      this.getBets()
+      this.getFriendsInfo()
+      console.log(this.state.user)
+    })
+    .catch(err => console.log(err));
   }
 
   getBets() {
 
-    API.getUserBets(this.state.user.username)
+    API.getUserBets(this.state.user)
       .then(res => this.setState({ bets: res.data }))
       .catch(err => console.log(err));
 
-    API.getUserBetsTwo(this.state.user.username)
+    API.getUserBetsTwo(this.state.user)
       .then(res => this.setState({ betsTwo: res.data }))
       .catch(err => console.log(err));
 
-    API.getValidatorBets(this.state.user.username)
+    API.getValidatorBets(this.state.user)
       .then(res => this.setState({ betsThree: res.data }))
       .catch(err => console.log(err));
   }
 
+  getFriendsInfo = () => {
+    for (let i = 0; i < this.state.friends.length; i++) {
+      API.getCurrentUser(this.state.friends[i])
+        .then(res =>
+          this.setState({ friendsTwo: [...this.state.friendsTwo, res.data[0]] }
+          )
+        )
+        .catch(err => console.log(err))
+    }
+  }
 
 
   render() {
@@ -42,15 +66,13 @@ class MyProfile extends Component {
         <Row>
           <Col size="md-12">
             <h1>
-              {this.state.user.username}'s Profile
+              {this.state.user}'s Profile
               </h1>
           </Col>
         </Row>
         <Row>
           <Col size="md-6">
             <h1>Current Bets</h1>
-            <button onClick={() => this.getBets()}>Show All bets</button>
-            <button onClick={this.checkState}>Check State</button>
             <h2>Bets Opened By You</h2>
             {this.state.bets.length ? (
               <List>
@@ -102,11 +124,15 @@ class MyProfile extends Component {
           </Col>
           <Col size="md-6">
             <h1>Friends</h1>
-            {this.state.friends.length ? (
+            {this.state.friendsTwo.length ? (
               <List>
-                {this.state.friends.map(friend => (
-                  <ListItem key={friend}>
-                    {friend}
+                {this.state.friendsTwo.map(friend => (
+                  <ListItem key={friend._id}>
+                    <Link to={"/users/" + friend._id}>
+                      <strong>
+                        {friend.username}
+                      </strong>
+                    </Link>
                   </ListItem>
                 ))}
               </List>

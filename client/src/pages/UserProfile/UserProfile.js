@@ -16,10 +16,12 @@ class UserProfile extends Component {
 
   componentDidMount() {
     API.getUser(this.props.match.params.id)
-      .then(res => this.setState({ user: res.data, friends: res.data.friends }))
+      .then(res => {
+        this.setState({ user: res.data, friends: res.data.friends });
+        this.getBets()
+        this.getFriendsInfo()
+      })
       .catch(err => console.log(err));
-
-      // this.getFriendsInfo()
   }
 
   getBets() {
@@ -37,13 +39,22 @@ class UserProfile extends Component {
       .catch(err => console.log(err));
   }
 
-  // getFriendsInfo() {
-  //   for (let i = 0; i < this.state.user.friends.length; i++){
-  //     API.getCurrentUser(this.state.user.friends[i])
-  //     .then(res => this.setState({ friends: [...this.state.friends, res.data] }))
-  //     .catch( err => console.log(err))
-  //   }
-  // }
+  getFriendsInfo = () => {
+    for (let i = 0; i < this.state.friends.length; i++) {
+      API.getCurrentUser(this.state.friends[i])
+        .then(res =>
+          this.setState({ friendsTwo: [...this.state.friendsTwo, res.data[0]] }
+          )
+        )
+        .catch(err => console.log(err))
+    }
+  }
+
+
+  checkState = event => {
+    // event.preventDefault();
+    console.log(this.state.friendsTwo[0]._id)
+  }
 
 
   render() {
@@ -59,7 +70,6 @@ class UserProfile extends Component {
         <Row>
           <Col size="md-6">
             <h1>Current Bets</h1>
-            <button onClick={() => this.getBets()}>Show All bets</button>
             <h2>Bets Opened By You</h2>
             {this.state.bets.length ? (
               <List>
@@ -111,17 +121,21 @@ class UserProfile extends Component {
           </Col>
           <Col size="md-6">
             <h1>Friends</h1>
-            {this.state.friends.length ? (
+            {this.state.friendsTwo.length ? (
               <List>
-              {this.state.friends.map(friend =>(
-                <ListItem key={friend}>
-                  {friend}
-                </ListItem>
-              ))}
+                {this.state.friendsTwo.map(friend => (
+                  <ListItem key={friend._id}>
+                    <Link to={"/users/" + friend._id}>
+                      <strong>
+                        {friend.username}
+                      </strong>
+                    </Link>
+                  </ListItem>
+                ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>

@@ -27,6 +27,9 @@ let Nav = () => (
         <a href="/" className="navbar-brand">
           Bet Social!
         </a>
+        <a href="/bets" className="navbar-brand">
+          Bets
+        </a>
         <a href="/users" className="navbar-brand">
           Users
         </a>
@@ -38,12 +41,6 @@ let Nav = () => (
         </a>
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
-        </a>
-        <a href="/activity" className="navbar-brand">
-          Activity
-        </a>
-        <a href="/friends" className="navbar-brand">
-          Friends
         </a>
       </div>
     </div>

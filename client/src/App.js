@@ -18,7 +18,11 @@ const App = () => (
     <div>
       <Nav />
       <Switch>
+<<<<<<< HEAD
         <PrivateRoute exact path="/users/:id" component={MyProfile} />
+=======
+        <PrivateRoute exact path="/users/:id" component={UserProfile} />
+>>>>>>> 42eeb96658bd3545ad8e9d61386d17ad97cb002b
         <PrivateRoute exact path="/bets/:id" component={Detail} />
         <PrivateRoute exact path="/" component={Bets} />
         <PrivateRoute exact path="/users" component={Users} />
