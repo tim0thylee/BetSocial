@@ -1,7 +1,6 @@
 import "./Nav.css"
 import React from "react";
 import Auth from '../../utils/Auth'
-// import LoggedIn from './LoggedIn/LoggedIn'
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
@@ -13,7 +12,10 @@ let Nav = () => (
         </a>
         <a href="/users" className="navbar-brand">
           Users
-</a>
+        </a>
+        <a href="/bets" className="navbar-brand">
+          Bets
+        </a>
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
