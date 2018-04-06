@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   // Gets all bets
-  getBets: function (username) {
+  getBets: function () {
     return axios.get("/api/bets");
   },
   // Gets all user bets
@@ -45,6 +45,14 @@ export default {
   getUsers: function () {
     return axios.get("/api/users");
   },
+   // Gets all user bets
+   getCurrentUser: function (username) {
+    return axios.get("/api/users",{
+      params: {
+        username: username
+      }
+    });
+  },
   // Gets the user with the given id
   getUser: function (id) {
     return axios.get("/api/users/" + id);
@@ -56,6 +64,10 @@ export default {
   // Saves a user to the database
   saveUser: function (userData) {
     return axios.post("/api/users", userData);
+  },
+  //Updates a bet
+  updateUser: function (id, betData) {
+    return axios.put("/api/users/" + id, betData)
   },
   // Authenticates a user
   authenticateUser: function (userData) {

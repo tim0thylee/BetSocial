@@ -51,6 +51,8 @@ module.exports = new PassportLocalStrategy({
         username: user.username
       };
 
+      // console.log(user)
+        
       return done(null, token, data);
     });
   });

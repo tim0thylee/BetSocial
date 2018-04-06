@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
-import Auth from "../../utils/Auth";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
 
-class MyProfile extends Component {
+class UserProfile extends Component {
   state = {
-    user: "",
+    user: {},
     bets: {},
     betsTwo: {},
     betsThree: {},
@@ -16,34 +15,26 @@ class MyProfile extends Component {
   };
 
   componentDidMount() {
-    this.loadCurrent();
-  }
-
-  loadCurrent = () => {
-
-    let user = Auth.getUser();
-
-    API.getCurrentUser(user)
-    .then( res => {
-      this.setState({ user: res.data[0].username, friends: res.data[0].friends })
-      this.getBets()
-      this.getFriendsInfo()
-      console.log(this.state.user)
-    })
-    .catch(err => console.log(err));
+    API.getUser(this.props.match.params.id)
+      .then(res => {
+        this.setState({ user: res.data, friends: res.data.friends });
+        this.getBets()
+        this.getFriendsInfo()
+      })
+      .catch(err => console.log(err));
   }
 
   getBets() {
 
-    API.getUserBets(this.state.user)
+    API.getUserBets(this.state.user.username)
       .then(res => this.setState({ bets: res.data }))
       .catch(err => console.log(err));
 
-    API.getUserBetsTwo(this.state.user)
+    API.getUserBetsTwo(this.state.user.username)
       .then(res => this.setState({ betsTwo: res.data }))
       .catch(err => console.log(err));
 
-    API.getValidatorBets(this.state.user)
+    API.getValidatorBets(this.state.user.username)
       .then(res => this.setState({ betsThree: res.data }))
       .catch(err => console.log(err));
   }
@@ -60,13 +51,19 @@ class MyProfile extends Component {
   }
 
 
+  checkState = event => {
+    // event.preventDefault();
+    console.log(this.state.friendsTwo[0]._id)
+  }
+
+
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size="md-12">
             <h1>
-              {this.state.user}'s Profile
+              {this.state.user.username}'s Profile
               </h1>
           </Col>
         </Row>
@@ -146,4 +143,4 @@ class MyProfile extends Component {
   }
 }
 
-export default MyProfile;
+export default UserProfile;

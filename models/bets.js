@@ -8,7 +8,8 @@ const betsSchema = new Schema({
   validator: {type: String},
   description: {type: String, required: true},
   closed: {type: Boolean, default: false},
-  endDate: {type: Date}
+  winner: {type: String},
+  loser: {type: String}
 });
 
 const Bets = mongoose.model("Bets", betsSchema);

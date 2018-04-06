@@ -4,19 +4,18 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 
-class Friends extends Component {
+class Activity extends Component {
   state = {
-    friends: {}
+
+    bets: {}
   };
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-
-
-  // componentDidMount() {
-  //   API.getFriends(this.props.match.params.id)
-  //     .then(res => this.setState({ Friends: res.data }))
-  //     .catch(err => console.log(err));
-  // }
+  componentDidMount() {
+    API.getBets(this.props.match.params.id)
+      .then(res => this.setState({ bet: res.data }))
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -25,7 +24,7 @@ class Friends extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                Friends List
+                {this.state.bets.username} by {this.state.bets.wager}
               </h1>
             </Jumbotron>
           </Col>
@@ -33,25 +32,21 @@ class Friends extends Component {
         <Row>
           <Col size="md-10 md-offset-1">
             <article>
-              <h1>Friends</h1>
+              <h1>Bet Description</h1>
               <p>
-                <ul>
-                  <li>Friends Generate here</li>
-                  <button>Make a Bet</button>
-                  <li>Friends Generate here</li>
-                  <button>Make a Bet</button>
-                  <li>Friends Generate here</li>
-                  <button>Make a Bet</button>
-                  <li>Friends Generate here</li>
-
-                </ul>
+                {this.state.bets.description}
               </p>
             </article>
           </Col>
         </Row>
+        {/* <Row>
+          <Col size="md-2">
+            <Link to="/">← Back to Authors</Link>
+          </Col>
+        </Row> */}
       </Container>
     );
   }
 }
 
-export default Friends;
+export default Activity;

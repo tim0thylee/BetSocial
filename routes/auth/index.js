@@ -136,6 +136,7 @@ router.post('/login', (req, res, next) => {
       });
     }
 
+    console.log(userData)
 
     return res.json({
       success: true,

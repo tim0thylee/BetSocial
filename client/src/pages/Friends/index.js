@@ -1,1 +1,1 @@
-export { default } from "./Friends.js";
+export { default } from "./Friends";

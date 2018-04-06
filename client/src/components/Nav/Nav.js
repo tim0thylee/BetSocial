@@ -1,3 +1,4 @@
+import "./Nav.css"
 import React from "react";
 
 const Nav = () => (
@@ -6,6 +7,12 @@ const Nav = () => (
       <div className="navbar-header">
         <a href="/" className="navbar-brand">
           Bet Social!
+        </a>
+        <a href="/bets" className="navbar-brand">
+          Bets
+        </a>
+        <a href="/users" className="navbar-brand">
+          Users
         </a>
         <a href="/login" className="navbar-brand">
           Login
