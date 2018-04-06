@@ -4,19 +4,22 @@ import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
 
-class MyProfile extends Component {
+class UserProfile extends Component {
   state = {
     user: {},
     bets: {},
     betsTwo: {},
     betsThree: {},
-    friends: {}
+    friends: {},
+    friendsTwo: {}
   };
 
   componentDidMount() {
     API.getUser(this.props.match.params.id)
-      .then(res => this.setState({ user: res.data }))
+      .then(res => this.setState({ user: res.data, friends: res.data.friends }))
       .catch(err => console.log(err));
+
+      // this.getFriendsInfo()
   }
 
   getBets() {
@@ -34,6 +37,13 @@ class MyProfile extends Component {
       .catch(err => console.log(err));
   }
 
+  // getFriendsInfo() {
+  //   for (let i = 0; i < this.state.user.friends.length; i++){
+  //     API.getCurrentUser(this.state.user.friends[i])
+  //     .then(res => this.setState({ friends: [...this.state.friends, res.data] }))
+  //     .catch( err => console.log(err))
+  //   }
+  // }
 
 
   render() {
@@ -50,7 +60,6 @@ class MyProfile extends Component {
           <Col size="md-6">
             <h1>Current Bets</h1>
             <button onClick={() => this.getBets()}>Show All bets</button>
-            <button onClick={this.checkState}>Check State</button>
             <h2>Bets Opened By You</h2>
             {this.state.bets.length ? (
               <List>
@@ -104,15 +113,15 @@ class MyProfile extends Component {
             <h1>Friends</h1>
             {this.state.friends.length ? (
               <List>
-                {this.state.friends.map(friend => (
-                  <ListItem key={friend}>
-                    {friend}
-                  </ListItem>
-                ))}
+              {this.state.friends.map(friend =>(
+                <ListItem key={friend}>
+                  {friend}
+                </ListItem>
+              ))}
               </List>
             ) : (
-                <h3>No Results to Display</h3>
-              )}
+              <h3>No Results to Display</h3>
+            )}
           </Col>
         </Row>
       </Container>
@@ -120,4 +129,4 @@ class MyProfile extends Component {
   }
 }
 
-export default MyProfile;
+export default UserProfile;
