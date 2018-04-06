@@ -1,31 +1,12 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
-// import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
 
-
-// const styles = {
-//   card: {
-//     minWidth: 275,
-//   },
-//   bullet: {
-//     display: 'inline-block',
-//     margin: '0 2px',
-//     transform: 'scale(0.8)',
-//   },
-//   title: {
-//     marginBottom: 16,
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// };
 
 class Bets extends Component {
   state = {
@@ -36,18 +17,22 @@ class Bets extends Component {
     better_two: "",
     description: "",
     validator: "",
-    closed: false
+    closed: false,
+    current: "",
+    friends: []
   };
 
   componentDidMount() {
     this.loadBet();
-    this.loadUsers();
   }
 
   loadBet = () => {
     API.getBets()
-      .then(res =>
-        this.setState({ bets: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
+      .then(res =>{
+        this.setState({ bets: res.data })
+        this.loadUsers()
+        this.loadCurrent()
+      }
       )
       .catch(err => console.log(err));
   };
@@ -56,20 +41,32 @@ class Bets extends Component {
   loadUsers = () => {
     API.getUsers()
       .then(res =>
-        this.setState({ users: res.data, better: "", wager: "", better_two: "", description: "", validator: "", closed: false })
+        this.setState({ users: res.data })
       )
       .catch(err => console.log(err));
   };
 
-  closeBet = id => {
-    API.update(id, {
-      closed: true
-    })
-      .then(res => this.loadBet())
-      .catch(err => console.log(err));
+  loadCurrent = () => {
 
-    console.log('test')
-  };
+    let user = Auth.getUser();
+
+    API.getCurrentUser(user)
+    .then( res => {
+      this.setState({ current: res.data[0].username, friends: res.data[0].friends })
+      this.cleanUsers()
+    })
+    .catch(err => console.log(err));
+  }
+
+  cleanUsers = () => {
+    for (let i = 0; i < this.state.users.length; i++){
+      if (this.state.users[i].username === this.state.current ){
+        this.state.users.splice(i, 1)
+      }
+    }
+    this.setState({ users: this.state.users})
+    console.log(this.state.users)
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -102,13 +99,11 @@ class Bets extends Component {
               <h1>Make a bet?</h1>
             <form>
               <label htmlFor="Better">Better:</label>
-              <SearchForm
-                value={this.state.better}
-                onChange={this.handleInputChange}
+              <Input
+                value={this.state.current}
                 name="better"
-                users={this.state.users}
-                placeholder="Type a better (required)"
-                list="users"
+                users={this.state.current}
+                placeholder={this.state.current}
               />
               <label htmlFor="Better">Better 2:</label>
               <SearchForm
@@ -155,8 +150,7 @@ class Bets extends Component {
             {this.state.bets.length ? (
               <List>
                 {this.state.bets.map(bet => (
-                  <Card>
-                    <CardContent>
+
                   <ListItem key={bet._id}>
                     <Link to={"/bets/" + bet._id}>
                       <strong>
@@ -164,8 +158,6 @@ class Bets extends Component {
                       </strong>
                     </Link>
                   </ListItem>
-                  </CardContent>
-                  </Card>
                 ))}
               </List>
             ) : (

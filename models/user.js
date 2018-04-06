@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  friends: [{type: String}],
+  friends: [{type: String, unique: true }],
   wins: {type: Number},
   loses: {type: Number}
 });

@@ -6,26 +6,32 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
-import Profile from "./pages/Profile";
+import Users from "./pages/Users";
 import MyProfile from "./pages/MyProfile";
-// import Friends from "./pages/Friends"
+import UserProfile from "./pages/UserProfile";
 import Nav from "./components/Nav";
+<<<<<<< HEAD
 import Tablist from "./components/Tablist";
 import PrivateRoute from "./pages/PrivateRoute";
 import MainImage from "./components/MainImage"
 
+=======
+import PrivateRoute from "./pages/PrivateRoute";
+import Auth from "./utils/Auth";
+>>>>>>> 2a3a90074c0bcf25ebb2ee7125c08862839f6877
 
 const App = () => (
-  <Router>
+<Router>
     <div>
       <Nav />
       <MainImage />
       <Tablist />
       <Switch>
-        <PrivateRoute exact path="/users/:id" component={MyProfile} />
+        <PrivateRoute exact path="/users/:id" component={UserProfile} />
         <PrivateRoute exact path="/bets/:id" component={Detail} />
-        <PrivateRoute exact path="/" component={Bets} />
-        <PrivateRoute exact path="/users" component={Profile} />
+        <PrivateRoute exact path="/" component={MyProfile} />
+        <PrivateRoute exact path="/bets" component={Bets} />
+        <PrivateRoute exact path="/users" component={Users} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/logout" component={Logout} />
         <Route exact path="/register" component={Register} />
@@ -33,6 +39,6 @@ const App = () => (
       </Switch>
     </div>
   </Router>
-);
+)
 
 export default App;
