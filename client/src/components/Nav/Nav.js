@@ -19,7 +19,7 @@ let Nav = () => (
       </div>
       </div>
     </nav>
-    <div>
+  <div>
       <MainImage />
       <Tablist />
     </div>
