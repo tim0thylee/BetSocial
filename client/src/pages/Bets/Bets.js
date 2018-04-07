@@ -7,6 +7,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
 import Modal from "../../components/Modal";
+import PaperSheet from "../../components/Paper"
 
 class Bets extends Component {
   state = {
@@ -101,6 +102,7 @@ class Bets extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
+          <PaperSheet>
               <h1>Make a bet?</h1>
             <form>
               <label htmlFor="Better">Better:</label>
@@ -150,8 +152,10 @@ class Bets extends Component {
               </FormBtn>
               <Modal />
             </form>
+          </PaperSheet>
           </Col>
           <Col size="md-6 sm-12">
+          <PaperSheet>
               <h1>Open Bets</h1>
             {this.state.bets.length ? (
               <List>
@@ -169,6 +173,7 @@ class Bets extends Component {
             ) : (
                 <h3>No Results to Display</h3>
               )}
+          </PaperSheet>    
           </Col>
         </Row>
       </Container>

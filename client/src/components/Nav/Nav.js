@@ -2,7 +2,10 @@ import "./Nav.css";
 import React from "react";
 import Auth from '../../utils/Auth';
 import Tablist from '../Tablist';
-import MainImage from "../MainImage"
+import MainImage from "../MainImage";
+import PaperSheet from "../Paper";
+
+let user = Auth.getUser();
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
@@ -10,12 +13,9 @@ let Nav = () => (
     <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
-        <a href="/" className="navbar-brand">
-          Bet Social!
-        </a>
-        <a href="/bets" className="navbar-brand">
-          Bets!
-        </a>
+        <div className="navbar-brand">
+          Welcome {user}!
+        </div>     
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
@@ -25,7 +25,7 @@ let Nav = () => (
   <div>
       <MainImage />
       <Tablist />
-    </div>
+  </div>
   </div>
       ) : (
       <nav className="navbar navbar-inverse navbar-top">
