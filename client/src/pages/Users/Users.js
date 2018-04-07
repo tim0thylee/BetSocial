@@ -73,12 +73,13 @@ render() {
                 <ListItem key={user._id}>
                   <Link to={"/users/" + user._id} className="font">
                     <strong>
-                      {user.username}
+                      {user.username}    
                     </strong>
                   </Link>
                   <button
                     value={user.username}
                     onClick={this.addFriend}
+                    className='btn btn-success'
                   >
                     Add Friend
                     </button>

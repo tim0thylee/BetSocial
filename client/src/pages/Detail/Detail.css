@@ -2,6 +2,17 @@
     text-align: center;
 }
 
-h1, h4 {
+h1, h4 a {
     font-family: 'Open Sans', sans-serif;
+}
+
+
+.jss53 {
+    background-color:#3B5998;
+    color: white;
+    font-size: 10px;
+}
+
+.jss66 {
+    padding-bottom: 50px;
 }

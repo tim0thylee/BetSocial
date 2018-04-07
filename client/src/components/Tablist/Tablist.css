@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 .paper{
     width: 1489.2px;
     margin: auto;
+=======
+.jss37 {
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a:hover{
+    text-decoration: none;
+    color: blue;
+>>>>>>> f2fb9d280285b78cd8cd20072ec75d301103548b
 }

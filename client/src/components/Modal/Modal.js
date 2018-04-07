@@ -4,10 +4,8 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Modal from 'material-ui/Modal';
 import Button from 'material-ui/Button';
+import indigo from 'material-ui/colors/indigo';
 
-// function rand() {
-//     return Math.round(Math.random() * 20) - 10;
-// }
 
 function getModalStyle() {
     const top = 50;
@@ -54,25 +52,29 @@ class SimpleModal extends React.Component {
         return (
             <div>
               
-                <Button color='primary'onClick={this.handleOpen}>Close Bet</Button>
+                <Button variant='raised' color='primary' onClick={this.handleOpen}>Close Bet</Button>
                 <Modal
                     aria-labelledby="Did You Win or Lose?"
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                     onClose={this.handleClose}
+                    backgroundColor={indigo}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
                         <Typography variant="title" id="modal-title">
                             Who Won?
                         </Typography>
                         <Button
-                            onClick={this.handleClick}
+                            variant='raised'
                             color='primary'
+                            onClick={this.handleClick}
                             value={this.props.better}
                         >
                             {this.props.better}
                         </Button>
                         <Button
+                            variant='raised'
+                            color='primary'
                             onClick={this.handleClick}
                             value={this.props.better_two}
                         >

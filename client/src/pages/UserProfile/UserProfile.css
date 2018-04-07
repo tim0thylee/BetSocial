@@ -5,3 +5,7 @@ h1, h2, h3 {
 .font {
     font-family: 'Open Sans', sans-serif;
 }
+
+.header{
+    text-align: center;
+}

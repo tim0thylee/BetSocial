@@ -5,3 +5,13 @@ h1, h2, h3 {
 .font {
     font-family: 'Open Sans', sans-serif;
 }
+
+strong {
+    padding: 10px;
+    color: blue;
+}
+
+button {
+    background-color: #22B24C;
+    color: white;
+}
