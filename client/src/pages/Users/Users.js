@@ -4,8 +4,7 @@ import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
-// import AddButton from "../../components/AddButton"
-// import {FormBtn} from "../../components/Form";
+import "./Users.css";
 
 class Users extends Component {
   state = {
@@ -72,7 +71,7 @@ render() {
             <List>
               {this.state.users.map(user => (
                 <ListItem key={user._id}>
-                  <Link to={"/users/" + user._id}>
+                  <Link to={"/users/" + user._id} className="font">
                     <strong>
                       {user.username}
                     </strong>

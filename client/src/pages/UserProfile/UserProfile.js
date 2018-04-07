@@ -3,6 +3,8 @@ import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
+import "./UserProfile.css";
+
 
 class UserProfile extends Component {
   state = {
@@ -95,7 +97,7 @@ render() {
             <List>
               {this.state.bets.map(bet => (
                 <ListItem key={bet._id}>
-                  <Link to={"/bets/" + bet._id}>
+                  <Link to={"/bets/" + bet._id} className="font">
                     <strong>
                       {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                     </strong>
@@ -111,7 +113,7 @@ render() {
             <List>
               {this.state.betsTwo.map(bet => (
                 <ListItem key={bet._id}>
-                  <Link to={"/bets/" + bet._id}>
+                  <Link to={"/bets/" + bet._id} className="font">
                     <strong>
                       {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                     </strong>
@@ -127,9 +129,11 @@ render() {
             <List>
               {this.state.betsThree.map(bet => (
                 <ListItem key={bet._id}>
+                  <Link to={"/bets/" + bet._id} className="font">
                   <strong>
                     {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                   </strong>
+                  </Link>
                 </ListItem>
               ))}
             </List>
@@ -143,7 +147,7 @@ render() {
             <List>
               {this.state.friendsTwo.map(friend => (
                 <ListItem key={friend._id}>
-                  <strong onClick={() => this.userLink(friend._id)}>
+                  <strong className="font" onClick={() => this.userLink(friend._id)}>
                     {friend.username}
                   </strong>
                 </ListItem>
