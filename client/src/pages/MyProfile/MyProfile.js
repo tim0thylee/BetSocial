@@ -5,6 +5,8 @@ import Auth from "../../utils/Auth";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
 import PaperSheet from "../../components/Paper"
+import "./MyProfile.css";
+
 
 class MyProfile extends Component {
   state = {
@@ -105,7 +107,7 @@ class MyProfile extends Component {
               <List>
                 {this.state.bets.map(bet => (
                   <ListItem key={bet._id}>
-                    <Link to={"/bets/" + bet._id}>
+                    <Link to={"/bets/" + bet._id} className="font">
                       <strong>
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
@@ -121,7 +123,7 @@ class MyProfile extends Component {
               <List>
                 {this.state.betsTwo.map(bet => (
                   <ListItem key={bet._id}>
-                    <Link to={"/bets/" + bet._id}>
+                    <Link to={"/bets/" + bet._id} className="font">
                       <strong>
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
@@ -137,7 +139,7 @@ class MyProfile extends Component {
               <List>
                 {this.state.betsThree.map(bet => (
                   <ListItem key={bet._id}>
-                    <Link to={"/bets/" + bet._id}>
+                    <Link to={"/bets/" + bet._id} className="font">
                       <strong>
                         {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
                       </strong>
@@ -157,7 +159,7 @@ class MyProfile extends Component {
               <List>
                 {this.state.friendsTwo.map(friend => (
                   <ListItem key={friend._id}>
-                    <Link to={"/users/" + friend._id}>
+                    <Link to={"/users/" + friend._id} className="font">
                       <strong>
                         {friend.username}
                       </strong>
