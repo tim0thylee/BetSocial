@@ -1,9 +1,12 @@
-import "./Nav.css"
+import "./Nav.css";
 import React from "react";
-import Auth from '../../utils/Auth'
+import Auth from '../../utils/Auth';
+import Tablist from '../Tablist';
+import MainImage from "../MainImage"
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
+  <div>
     <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
@@ -16,11 +19,16 @@ let Nav = () => (
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
-        </div>
-        </div>
-        </nav>
+      </div>
+      </div>
+    </nav>
+  <div>
+      <MainImage />
+      <Tablist />
+    </div>
+  </div>
       ) : (
-         <nav className="navbar navbar-inverse navbar-top">
+      <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
         <a href="/" className="navbar-brand">

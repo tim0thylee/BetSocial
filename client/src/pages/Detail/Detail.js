@@ -6,7 +6,7 @@ import API from "../../utils/API";
 // import Auth from "../../utils/Auth";
 import SimpleModalWrapped from "../../components/Modal";
 import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 
 
 
@@ -79,20 +79,20 @@ class Detail extends Component {
       console.log("better: " + this.state.bet.better)
       console.log("better_two: " + this.state.bet.better_two)
     }
-    else {
-      return (
-        <div>
-          <RaisedButton label="Alert" onClick={this.handleOpen} />
-          <Dialog
-            modal={false}
-            open={this.state.open}
-            onRequestClose={this.handleClose}
-          >
-            This Bet is Closed!
-          </Dialog>
-        </div>
-      );
-    }
+    // // else {
+    // //   return (
+    // //     // <div>
+    // //     //   <RaisedButton label="Alert" onClick={this.handleOpen} />
+    // //     //   <Dialog
+    // //     //     modal={false}
+    // //     //     open={this.state.open}
+    // //     //     onRequestClose={this.handleClose}
+    // //     //   >
+    // //     //     This Bet is Closed!
+    // //     //   </Dialog>
+    // //     // </div>
+    // //   );
+    // }
   }
 
   openBet = event => {

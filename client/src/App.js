@@ -12,6 +12,7 @@ import UserProfile from "./pages/UserProfile";
 import Nav from "./components/Nav";
 import PrivateRoute from "./pages/PrivateRoute";
 
+
 const App = () => (
 <Router>
     <div>
