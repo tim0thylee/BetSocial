@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
+import PaperSheet from "../../components/Paper"
 
 class MyProfile extends Component {
   state = {
@@ -84,6 +85,7 @@ class MyProfile extends Component {
   render() {
     return (
       <Container fluid>
+        <PaperSheet>
         <Row>
           <Col size="md-12">
             <h1>
@@ -93,8 +95,10 @@ class MyProfile extends Component {
               <h3>Losses: {this.state.losses}</h3>
           </Col>
         </Row>
+        </PaperSheet>
         <Row>
           <Col size="md-6">
+          <PaperSheet>
             <h1>Current Bets</h1>
             <h2>Bets Opened By You</h2>
             {this.state.bets.length ? (
@@ -144,8 +148,10 @@ class MyProfile extends Component {
             ) : (
                 <h3>No Results to Display</h3>
               )}
+          </PaperSheet>    
           </Col>
           <Col size="md-6">
+          <PaperSheet>
             <h1>Friends</h1>
             {this.state.friendsTwo.length ? (
               <List>
@@ -162,6 +168,7 @@ class MyProfile extends Component {
             ) : (
                 <h3>No Results to Display</h3>
               )}
+          </PaperSheet>
           </Col>
         </Row>
       </Container>
