@@ -81,9 +81,9 @@ export default {
   saveUser: function (userData) {
     return axios.post("/api/users", userData);
   },
-  //Updates a bet
-  updateUser: function (id, betData) {
-    return axios.put("/api/users/" + id, betData)
+  //Updates a user
+  updateUser: function (id, userData) {
+    return axios.put("/api/users/" + id, userData)
   },
   // Authenticates a user
   authenticateUser: function (userData) {

@@ -5,6 +5,7 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
+import ForgotPassword from "./pages/ForgotPassword";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
 import MyProfile from "./pages/MyProfile";
@@ -24,6 +25,7 @@ const App = () => (
         <PrivateRoute exact path="/bets" component={Bets} />
         <PrivateRoute exact path="/users" component={Users} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/reset" component={ForgotPassword} />
         <Route exact path="/logout" component={Logout} />
         <Route exact path="/register" component={Register} />
         <Route component={NoMatch} />

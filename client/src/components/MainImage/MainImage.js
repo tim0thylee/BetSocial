@@ -7,7 +7,7 @@ class MainImage extends Component{
     render() {
         return(
             <div className="image">
-                 <img src={background} alt="background" class="center" />
+                <img src={background} alt="background" className="center" />
             </div>
         )
     }

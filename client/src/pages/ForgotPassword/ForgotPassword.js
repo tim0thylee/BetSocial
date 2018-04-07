@@ -6,34 +6,43 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 
-class Login extends Component {
+class ForgotPassword extends Component {
   state = {
     username: "",
     password: "",
     errorMessage: null,
-    user: {}
+    id: ""
   };
 
   componentDidMount() {
+    this.getUserId()
   }
 
-  authenticate = () => {
-    const userData = {
-      username: this.state.username,
-      password: this.state.password
-    }
 
-    API.authenticateUser(userData)
+  updateUser() {
+    API.updateUser(this.state.id, {
+      password: this.state.password})
       .then(res => {
-        // clear error message
-        this.setState({ errorMessage: null });
-        Auth.authenticateUser(res.data.token, res.data.user.username);
+        // console.log(res.data)
+        alert('remember your password mother father')
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/";
+        window.location.href = "/login";
       })
-      .catch(err => this.setState({ errorMessage: err.response.data.message }));
-  };
+      .catch(err => console.log(err))
+  }
+
+  getUserId() {
+    let user = Auth.getUser()
+
+    API.getCurrentUser(user)
+    .then( res => {
+      console.log('res.data: ' + res.data[0]._id)
+      this.setState({ id: res.data[0]._id })
+    })
+    .catch(err => console.log(err));
+  }
+  
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -46,12 +55,10 @@ class Login extends Component {
     event.target.select();
   };
 
-  handleLogin = event => {
+  handleReset = event => {
     event.preventDefault();
     if (this.state.username && this.state.password && this.state.password.length >= 6) {
-      this.authenticate();
-    } else {
-      this.setState({ errorMessage: "Please enter valid username and password to sign in." })
+      this.updateUser()
     }
   };
 
@@ -61,7 +68,7 @@ class Login extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1 className="h4 mb-3 font-weight-normal">Please Login</h1>
+              <h1 className="h4 mb-3 font-weight-normal">Password Reset. Please Remember to Write Down Your Password!</h1>
             </Jumbotron>
             <form>
               <Input
@@ -77,34 +84,20 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                type="password"
                 placeholder="password (required)"
                 className="form-control"
                 required=""
                 autoFocus={true}
               />
-              <div className="checkbox mb-3">
-                <label>
-                  <input type="checkbox" value="remember-me" /> Remember me
-            </label>
-              </div>
               <div className="checkbox mb-3 text-danger">
                 {this.state.errorMessage}
               </div>
               <FormBtn
                 disabled={!(this.state.username && this.state.password)}
-                onClick={this.handleLogin}
+                onClick={this.handleReset}
               >
-                Login
+                Rest Password
               </FormBtn>
-              <p className="mt-5 mb-3">
-                Don't have an account?&nbsp;&nbsp;
-            <Link to={"/register"}>Sign Up</Link>
-              </p>
-              <p className="mt-5 mb-3">
-                Forgot Password?&nbsp;&nbsp;
-            <Link to={"/reset"}>Reset Password</Link>
-              </p>
             </form>
           </Col>
         </Row>
@@ -113,4 +106,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default ForgotPassword;
