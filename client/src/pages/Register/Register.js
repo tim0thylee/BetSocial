@@ -29,7 +29,7 @@ class Register extends Component {
         Auth.authenticateUser(res.data.token);
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/login";
+        window.location.href = "/";
       })
       .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };
