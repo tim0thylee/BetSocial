@@ -48,7 +48,7 @@ handleChange = (event, value) => {
         centered
         value={value} onChange={this.handleChange}
         >
-        <Tab label="Profile" href="/"/>
+        <Tab label="Profile" fontSize='30px' href="/"/>
         <Tab label="Users" href="/users"/>
         <Tab label="Bets" href="/bets"/>
       </Tabs>
