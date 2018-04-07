@@ -102,10 +102,6 @@ class Login extends Component {
                 Don't have an account?&nbsp;&nbsp;
             <Link to={"/register"}>Sign Up</Link>
               </p>
-              <p className="mt-5 mb-3">
-                Forgot Password?&nbsp;&nbsp;
-            <Link to={"/reset"}>Reset Password</Link>
-              </p>
             </form>
           </Col>
         </Row>
