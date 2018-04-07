@@ -91,22 +91,22 @@ class Login extends Component {
               <div className="checkbox mb-3 text-danger">
                 {this.state.errorMessage}
               </div>
-                <FormBtn
-                  disabled={!(this.state.username && this.state.password)}
-                  onClick={this.handleLogin}
-                >
-                  Login
+              <FormBtn
+                disabled={!(this.state.username && this.state.password)}
+                onClick={this.handleLogin}
+              >
+                Login
               </FormBtn>
-                <p className="mt-5 mb-3">
-                  Don't have an account?&nbsp;&nbsp;
+              <p className="mt-5 mb-3">
+                Don't have an account?&nbsp;&nbsp;
             <Link to={"/register"}>Sign Up</Link>
-                </p>
+              </p>
             </form>
           </Col>
         </Row>
       </Container>
-        );
-      }
-    }
-    
-    export default Login;
+    );
+  }
+}
+
+export default Login;

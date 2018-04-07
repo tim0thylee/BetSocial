@@ -12,7 +12,9 @@ class MyProfile extends Component {
     betsTwo: {},
     betsThree: {},
     friends: {},
-    friendsTwo: {}
+    friendsTwo: {},
+    wins: 0,
+    losses: 0
   };
 
   componentDidMount() {
@@ -28,7 +30,8 @@ class MyProfile extends Component {
       this.setState({ user: res.data[0].username, friends: res.data[0].friends })
       this.getBets()
       this.getFriendsInfo()
-      console.log(this.state.user)
+      this.getRecord()
+      // console.log(this.state.user)
     })
     .catch(err => console.log(err));
   }
@@ -60,6 +63,24 @@ class MyProfile extends Component {
   }
 
 
+  getRecord() {
+    API.getWins(this.state.user)
+      .then(res => {
+        // console.log('wins: ' + res.data.length)
+        this.setState({ wins: res.data.length })
+      })
+      .catch(err => console.log(err))
+
+      API.getLosses(this.state.user)
+      .then(res => {
+        // console.log('Losses: ' + res.data.length)
+        this.setState({ losses: res.data.length })
+      })
+      .catch(err => console.log(err))
+    }
+
+
+
   render() {
     return (
       <Container fluid>
@@ -68,6 +89,8 @@ class MyProfile extends Component {
             <h1>
               {this.state.user}'s Profile
               </h1>
+              <h3>Wins: {this.state.wins}</h3>
+              <h3>Losses: {this.state.losses}</h3>
           </Col>
         </Row>
         <Row>
