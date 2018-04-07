@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import { Paper, Tabs } from 'material-ui';
 import { Tab } from 'material-ui/Tabs';
-<<<<<<< HEAD
-import "./Tablist.css"
-=======
 import './Tablist.css'
->>>>>>> f2fb9d280285b78cd8cd20072ec75d301103548b
 
 
 class Tablist extends Component {
