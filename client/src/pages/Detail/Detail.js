@@ -118,8 +118,8 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-6">
+          <PaperSheet>
             <article>
-              <PaperSheet>
               <h1>Wager</h1>
               <h4>
                 {this.state.bet.wager}
