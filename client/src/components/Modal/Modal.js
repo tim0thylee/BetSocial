@@ -43,13 +43,18 @@ class SimpleModal extends React.Component {
         this.setState({ open: false });
     };
 
+    handleClick = event => {
+        this.props.onClick(event);
+        this.handleClose();
+    }
+
     render() {
         const { classes } = this.props;
 
         return (
             <div>
               
-                <Button  color='primary'onClick={this.handleOpen}>Close Bet</Button>
+                <Button color='primary'onClick={this.handleOpen}>Close Bet</Button>
                 <Modal
                     aria-labelledby="Did You Win or Lose?"
                     aria-describedby="simple-modal-description"
@@ -60,8 +65,19 @@ class SimpleModal extends React.Component {
                         <Typography variant="title" id="modal-title">
                             Who Won?
                         </Typography>
-                        <Button onClick={this.props.onClick} color='primary' value={this.props.better}>{this.props.better}</Button>
-                        <Button onClick={this.props.onClick} value={this.props.better_two}>{this.props.better_two}</Button>
+                        <Button
+                            onClick={this.handleClick}
+                            color='primary'
+                            value={this.props.better}
+                        >
+                            {this.props.better}
+                        </Button>
+                        <Button
+                            onClick={this.handleClick}
+                            value={this.props.better_two}
+                        >
+                            {this.props.better_two}
+                        </Button>
                     </div>
                 </Modal>
             </div>

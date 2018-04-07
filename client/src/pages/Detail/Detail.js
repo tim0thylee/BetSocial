@@ -6,7 +6,7 @@ import API from "../../utils/API";
 // import Auth from "../../utils/Auth";
 import SimpleModalWrapped from "../../components/Modal";
 import Dialog from 'material-ui/Dialog';
-// import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 
 
 
@@ -39,60 +39,42 @@ class Detail extends Component {
   };
 
   updateWinners = () => {
-    // while (!this.state.winner && !this.state.loser) {
-      if (this.state.winner && this.state.loser) {
-        API.update(this.props.match.params.id, {
-          closed: true,
-          winner: this.state.winner,
-          loser: this.state.loser
+    if (this.state.winner && this.state.loser) {
+      API.update(this.props.match.params.id, {
+        closed: true,
+        winner: this.state.winner,
+        loser: this.state.loser
+      })
+        .then(res => {
+          console.log('success!')
+          this.loadBet()
         })
-          .then(res => {
-            console.log('success!')
-            this.loadBet()
-          })
-          .catch(err => console.log(err))
-      }
-    // }
+        .catch(err => console.log(err))
+    } else {
+      console.log('updateWinners else')
+    }
   }
 
   whoWon = event => {
-    event.preventDefault()
-
     console.log("clicked: " + event.target.value)
 
     if (!this.state.bet.closed) {
+      
       if (event.target.value === this.state.bet.better) {
-        // console.log('better_two: ' + this.state.bet.better_two)
         this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-          this.updateWinners()
+          this.updateWinners
         )
       }
       else if (event.target.value === this.state.bet.better_two) {
-        // console.log('better: ' + this.state.bet.better)
         this.setState({ winner: event.target.value, loser: this.state.bet.better },
-          this.updateWinners()
+          this.updateWinners
         )
       }
 
-      console.log("winner: " + this.state.winner)
-      console.log("loser: " + this.state.loser)
-      console.log("better: " + this.state.bet.better)
-      console.log("better_two: " + this.state.bet.better_two)
     }
-    // // else {
-    // //   return (
-    // //     // <div>
-    // //     //   <RaisedButton label="Alert" onClick={this.handleOpen} />
-    // //     //   <Dialog
-    // //     //     modal={false}
-    // //     //     open={this.state.open}
-    // //     //     onRequestClose={this.handleClose}
-    // //     //   >
-    // //     //     This Bet is Closed!
-    // //     //   </Dialog>
-    // //     // </div>
-    // //   );
-    // }
+    else {
+      alert("Bet is closed!")
+    }
   }
 
   openBet = event => {
@@ -101,10 +83,10 @@ class Detail extends Component {
     API.update(this.props.match.params.id, {
       closed: false
     })
-      .then(res => {
-        this.loadBet()
-      })
-      .catch(err => console.log(err))
+    .then(res => {
+      this.loadBet()
+    })
+    .catch(err => console.log(err))
   }
 
   render() {
@@ -165,7 +147,6 @@ class Detail extends Component {
               better_two={this.state.bet.better_two}
               onClick={this.whoWon}
             />
-            <button onClick={this.openBet}>OpenBet</button>
           </Col>
         </Row>
         <Row>
