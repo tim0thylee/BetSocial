@@ -22,6 +22,8 @@ class Register extends Component {
       password: this.state.password
     };
 
+    console.log(userData)
+
     API.authenticateUser(userData)
       .then(res => {
         // clear error message
@@ -29,7 +31,7 @@ class Register extends Component {
         Auth.authenticateUser(res.data.token);
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/login";
+        window.location.href = "/";
       })
       .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };
@@ -64,7 +66,7 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.username&& this.state.password && this.state.password.length >= 6) {
+    if (this.state.username && this.state.password && this.state.password.length >= 6) {
       this.signUp();
     } else {
       this.setState({ errorMessage: "Please enter all required fields to sign up." })
