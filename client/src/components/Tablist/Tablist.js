@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Paper, Tabs } from 'material-ui';
 import { Tab } from 'material-ui/Tabs';
+import './Tablist.css'
 
 
 class Tablist extends Component {
@@ -35,7 +36,7 @@ handleChange = (event, value) => {
 };
 
  render(){
-  const { classes } = this.props;
+  // const { classes } = this.props;
   const { value } = this.state;
 
    return (
