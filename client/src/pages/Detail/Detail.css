@@ -2,6 +2,14 @@
     text-align: center;
 }
 
-h1, h4 {
+h1, h4 a {
     font-family: 'Open Sans', sans-serif;
 }
+
+
+button.MuiButtonBase-root-53 {
+    background-color:#3B5998;
+    color: white;
+    font-size: 10px;
+}
+

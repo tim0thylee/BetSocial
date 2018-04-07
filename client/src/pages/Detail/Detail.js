@@ -4,8 +4,6 @@ import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
 // import Auth from "../../utils/Auth";
 import SimpleModalWrapped from "../../components/Modal";
-import Dialog from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
 import "./Detail.css";
 
 class Detail extends Component {
@@ -147,7 +145,7 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Bets</Link>
+            <Link to="/" className="link">← Back to Bets</Link>
           </Col>
         </Row>
       </Container>

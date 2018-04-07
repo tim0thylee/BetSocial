@@ -8,6 +8,7 @@ import { Input, FormBtn } from "../../components/Form";
 import SearchForm from "../../components/SearchForm";
 import Modal from "../../components/Modal";
 import PaperSheet from "../../components/Paper"
+import "./Bets.css"
 
 class Bets extends Component {
   state = {

@@ -90,11 +90,11 @@ class MyProfile extends Component {
         <PaperSheet>
         <Row>
           <Col size="md-12">
-            <h1>
+            <h1 className="header">
               {this.state.user}'s Profile
               </h1>
-              <h3>Wins: {this.state.wins}</h3>
-              <h3>Losses: {this.state.losses}</h3>
+              <h3 className="header">Wins: {this.state.wins}</h3>
+              <h3 className="header">Losses: {this.state.losses}</h3>
           </Col>
         </Row>
         </PaperSheet>

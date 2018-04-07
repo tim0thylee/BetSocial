@@ -5,3 +5,16 @@ h1, h2, h3 {
 .font {
     font-family: 'Open Sans', sans-serif;
 }
+
+.header{
+    text-align: center;
+}
+
+.list-group-item {
+    padding: 25px;
+    overflow-y: hidden
+}
+
+.list-overflow-container {
+    overflow-y:hidden
+}
