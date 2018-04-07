@@ -52,7 +52,7 @@ class SimpleModal extends React.Component {
         return (
             <div>
               
-                <Button color='primary'onClick={this.handleOpen}>Close Bet</Button>
+                <Button variant='raised' color='primary' onClick={this.handleOpen}>Close Bet</Button>
                 <Modal
                     aria-labelledby="Did You Win or Lose?"
                     aria-describedby="simple-modal-description"
