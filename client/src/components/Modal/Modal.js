@@ -4,10 +4,8 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Modal from 'material-ui/Modal';
 import Button from 'material-ui/Button';
+import indigo from 'material-ui/colors/indigo';
 
-// function rand() {
-//     return Math.round(Math.random() * 20) - 10;
-// }
 
 function getModalStyle() {
     const top = 50;
@@ -60,6 +58,7 @@ class SimpleModal extends React.Component {
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                     onClose={this.handleClose}
+                    backgroundColor={indigo}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
                         <Typography variant="title" id="modal-title">
@@ -67,7 +66,6 @@ class SimpleModal extends React.Component {
                         </Typography>
                         <Button
                             onClick={this.handleClick}
-                            color='primary'
                             value={this.props.better}
                         >
                             {this.props.better}

@@ -3,7 +3,6 @@ import React from "react";
 import Auth from '../../utils/Auth';
 import Tablist from '../Tablist';
 import MainImage from "../MainImage";
-import PaperSheet from "../Paper";
 
 let user = Auth.getUser();
 

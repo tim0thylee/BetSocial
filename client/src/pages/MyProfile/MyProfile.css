@@ -1,0 +1,22 @@
+h1, h2, h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.font {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header{
+    text-align: center;
+}
+
+.list-group-item {
+    padding: 25px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.list-overflow-container {
+    overflow-y: auto;
+}

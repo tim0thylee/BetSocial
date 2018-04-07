@@ -6,7 +6,7 @@ class Background extends Component{
     render() {
         return(
             <div className="image">
-                <img src={background} alt="background" class="background" />
+                <img src={background} alt="background" className="background" />
             </div>
         )
     }

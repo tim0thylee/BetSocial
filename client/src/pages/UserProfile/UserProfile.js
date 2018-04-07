@@ -3,6 +3,9 @@ import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
+import PaperSheet from "../../components/Paper"
+import "./UserProfile.css";
+
 
 class UserProfile extends Component {
   state = {
@@ -62,101 +65,109 @@ class UserProfile extends Component {
       })
       .catch(err => console.log(err))
 
-      API.getLosses(this.state.user.username)
+    API.getLosses(this.state.user.username)
       .then(res => {
         // console.log('Losses: ' + res.data.length)
         this.setState({ losses: res.data.length })
       })
       .catch(err => console.log(err))
-    }
+  }
 
-userLink = (id) => {
-  window.location = '/users/' + id
-}
+  userLink = (id) => {
+    window.location = '/users/' + id
+  }
 
 
-render() {
-  return (
-    <Container fluid>
-      <Row>
-        <Col size="md-12">
-          <h1>
-            {this.state.user.username}'s Profile
+  render() {
+    return (
+      <Container fluid>
+        <PaperSheet>
+          <Row>
+            <Col size="md-12">
+              <h1 className="header">
+                {this.state.user.username}'s Profile
               </h1>
-              <h3>Wins: {this.state.wins}</h3>
-              <h3>Losses: {this.state.losses}</h3>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="md-6">
-          <h1>Current Bets</h1>
-          <h2>Bets Opened By You</h2>
-          {this.state.bets.length ? (
-            <List>
-              {this.state.bets.map(bet => (
-                <ListItem key={bet._id}>
-                  <Link to={"/bets/" + bet._id}>
-                    <strong>
-                      {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
+              <h3 className="header">Wins: {this.state.wins}</h3>
+              <h3 className="header">Losses: {this.state.losses}</h3>
+            </Col>
+          </Row>
+        </PaperSheet>
+        <Row>
+          <Col size="md-6">
+            <PaperSheet>
+              <h1>Current Bets</h1>
+              <h2>Bets Opened By You</h2>
+              {this.state.bets.length ? (
+                <List>
+                  {this.state.bets.map(bet => (
+                    <ListItem key={bet._id}>
+                      <Link to={"/bets/" + bet._id} className="font">
+                        <strong>
+                          {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
+                        </strong>
+                      </Link>
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                  <h3>No Results to Display</h3>
+                )}
+              <h2>Bets Wagered Against You</h2>
+              {this.state.betsTwo.length ? (
+                <List>
+                  {this.state.betsTwo.map(bet => (
+                    <ListItem key={bet._id}>
+                      <Link to={"/bets/" + bet._id} className="font">
+                        <strong>
+                          {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
+                        </strong>
+                      </Link>
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                  <h3>No Results to Display</h3>
+                )}
+              <h2>Bets You Are Validating</h2>
+              {this.state.betsThree.length ? (
+                <List>
+                  {this.state.betsThree.map(bet => (
+                    <ListItem key={bet._id}>
+                      <Link to={"/bets/" + bet._id} className="font">
+                        <strong>
+                          {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
+                        </strong>
+                      </Link>
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                  <h3>No Results to Display</h3>
+                )}
+            </PaperSheet>
+          </Col>
+          <Col size="md-6">
+          <PaperSheet>
+            <h1>Friends</h1>
+            {this.state.friendsTwo.length ? (
+              <List>
+                {this.state.friendsTwo.map(friend => (
+                  <ListItem key={friend._id}>
+                    <strong className="font" onClick={() => this.userLink(friend._id)}>
+                      {friend.username}
                     </strong>
-                  </Link>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-              <h3>No Results to Display</h3>
-            )}
-          <h2>Bets Wagered Against You</h2>
-          {this.state.betsTwo.length ? (
-            <List>
-              {this.state.betsTwo.map(bet => (
-                <ListItem key={bet._id}>
-                  <Link to={"/bets/" + bet._id}>
-                    <strong>
-                      {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
-                    </strong>
-                  </Link>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-              <h3>No Results to Display</h3>
-            )}
-          <h2>Bets You Are Validating</h2>
-          {this.state.betsThree.length ? (
-            <List>
-              {this.state.betsThree.map(bet => (
-                <ListItem key={bet._id}>
-                  <strong>
-                    {bet.better} bets {bet.better_two} {bet.wager} that {bet.description}, closed: {String(bet.closed)}
-                  </strong>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-              <h3>No Results to Display</h3>
-            )}
-        </Col>
-        <Col size="md-6">
-          <h1>Friends</h1>
-          {this.state.friendsTwo.length ? (
-            <List>
-              {this.state.friendsTwo.map(friend => (
-                <ListItem key={friend._id}>
-                  <strong onClick={() => this.userLink(friend._id)}>
-                    {friend.username}
-                  </strong>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-              <h3>No Results to Display</h3>
-            )}
-        </Col>
-      </Row>
-    </Container>
-  );
-}
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+                <h3>No Results to Display</h3>
+              )}
+              </PaperSheet>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
 export default UserProfile;

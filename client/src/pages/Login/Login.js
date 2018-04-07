@@ -5,6 +5,7 @@ import Auth from '../../utils/Auth';
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import "./Login.css";
 
 class Login extends Component {
   state = {
@@ -100,10 +101,6 @@ class Login extends Component {
               <p className="mt-5 mb-3">
                 Don't have an account?&nbsp;&nbsp;
             <Link to={"/register"}>Sign Up</Link>
-              </p>
-              <p className="mt-5 mb-3">
-                Forgot Password?&nbsp;&nbsp;
-            <Link to={"/reset"}>Reset Password</Link>
               </p>
             </form>
           </Col>
