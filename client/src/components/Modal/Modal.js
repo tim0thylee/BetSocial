@@ -5,13 +5,13 @@ import Typography from 'material-ui/Typography';
 import Modal from 'material-ui/Modal';
 import Button from 'material-ui/Button';
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
+// function rand() {
+//     return Math.round(Math.random() * 20) - 10;
+// }
 
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
 
     return {
         top: `${top}%`,
@@ -35,7 +35,7 @@ class SimpleModal extends React.Component {
         open: false,
     };
 
-    handleOpen = () => {
+    handleOpen = () => {     
         this.setState({ open: true });
     };
 
@@ -49,7 +49,7 @@ class SimpleModal extends React.Component {
         return (
             <div>
               
-                <Button color='primary'onClick={this.handleOpen}>Close Bet</Button>
+                <Button  color='primary'onClick={this.handleOpen}>Close Bet</Button>
                 <Modal
                     aria-labelledby="Did You Win or Lose?"
                     aria-describedby="simple-modal-description"
@@ -58,9 +58,10 @@ class SimpleModal extends React.Component {
                 >
                     <div style={getModalStyle()} className={classes.paper}>
                         <Typography variant="title" id="modal-title">
-                            Did You Win or Lose?
-            </Typography>
-                        <Button color='primary' onClick={this.href='/'}>Won</Button><Button onClick={this.handleOpen}>Loss</Button>
+                            Who Won?
+                        </Typography>
+                        <Button onClick={this.props.onClick} color='primary' value={this.props.better}>{this.props.better}</Button>
+                        <Button onClick={this.props.onClick} value={this.props.better_two}>{this.props.better_two}</Button>
                     </div>
                 </Modal>
             </div>
