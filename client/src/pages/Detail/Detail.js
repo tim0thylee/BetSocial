@@ -98,7 +98,7 @@ class Detail extends Component {
                 {this.state.bet.loser}
               </h4>
             </article>
-            <Modal />
+            <button onClick ={() => this.closeBet(this.state.bet._id)}>Close Bet</button>
             <button onClick ={() => this.openBet(this.state.bet._id)}>Open Bet</button>
             </Col>
         </Row>
