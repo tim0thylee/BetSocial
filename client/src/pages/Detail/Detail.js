@@ -5,7 +5,7 @@ import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import SimpleModalWrapped from "../../components/Modal";
 import "./Detail.css";
-import PaperSheet from '../../components/Paper";
+import PaperSheet from "../../components/Paper";
 
 class Detail extends Component {
   state = {
