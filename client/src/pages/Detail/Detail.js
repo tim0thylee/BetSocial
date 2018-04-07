@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
-// import Auth from "../../utils/Auth";
+import Auth from "../../utils/Auth";
 import SimpleModalWrapped from "../../components/Modal";
 import "./Detail.css";
 
@@ -17,7 +17,13 @@ class Detail extends Component {
 
   componentDidMount() {
     this.loadBet()
+    this.loadUser()
 
+  }
+
+ loadUser = () => {
+    let currentUser = Auth.getUser();
+    this.setState({user: currentUser})
   }
 
   loadBet = () => {
@@ -67,6 +73,18 @@ class Detail extends Component {
         )
       }
 
+    }
+    else  if (this.state.user === this.state.bet.validator){
+      if (event.target.value === this.state.bet.better) {
+        this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
+          this.updateWinners
+        )
+      }
+      else if (event.target.value === this.state.bet.better_two) {
+        this.setState({ winner: event.target.value, loser: this.state.bet.better },
+          this.updateWinners
+        )
+      }
     }
     else {
       alert("Bet is closed!")
