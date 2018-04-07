@@ -5,7 +5,7 @@ export default {
   getBets: function () {
     return axios.get("/api/bets");
   },
-  // Gets all user bets
+  // Gets all bets where user is better
   getUserBets: function (username) {
     return axios.get("/api/bets",{
       params: {
@@ -13,7 +13,7 @@ export default {
       }
     });
   },
-  // Gets all user bets
+  // Gets all bets where user is better_two
   getUserBetsTwo: function (username) {
     return axios.get("/api/bets",{
       params: {
@@ -21,11 +21,27 @@ export default {
       }
     });
   },
-  // Gets all user bets
+  // Gets all bets where user is validator
   getValidatorBets: function (username) {
     return axios.get("/api/bets",{
       params: {
         validator: username
+      }
+    });
+  },
+   // Gets all bets where user is winner
+   getWins: function (username) {
+    return axios.get("/api/bets",{
+      params: {
+        winner: username
+      }
+    });
+  },
+   // Gets all bets where user is loser
+   getLosses: function (username) {
+    return axios.get("/api/bets",{
+      params: {
+        loser: username
       }
     });
   },

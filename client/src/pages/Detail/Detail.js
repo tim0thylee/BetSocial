@@ -30,25 +30,30 @@ class Detail extends Component {
       .catch(err => console.log(err));
   };
 
-  updateWinners = () => {
-    API.update(this.props.match.params.id, {
-      closed: true,
-      winner: this.state.winner,
-      loser: this.state.loser
-    })
-      .then(res => {
-        this.loadBet()
-      })
-      .catch(err => console.log(err))
-  }
-  
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
+
+  updateWinners = () => {
+    // while (!this.state.winner && !this.state.loser) {
+      if (this.state.winner && this.state.loser) {
+        API.update(this.props.match.params.id, {
+          closed: true,
+          winner: this.state.winner,
+          loser: this.state.loser
+        })
+          .then(res => {
+            console.log('success!')
+            this.loadBet()
+          })
+          .catch(err => console.log(err))
+      }
+    // }
+  }
 
   whoWon = event => {
     event.preventDefault()
@@ -57,15 +62,15 @@ class Detail extends Component {
 
     if (!this.state.bet.closed) {
       if (event.target.value === this.state.bet.better) {
-        console.log('better_two: ' + this.state.bet.better_two)
+        // console.log('better_two: ' + this.state.bet.better_two)
         this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-        this.updateWinners()
+          this.updateWinners()
         )
       }
       else if (event.target.value === this.state.bet.better_two) {
-        console.log('better: ' + this.state.bet.better)
+        // console.log('better: ' + this.state.bet.better)
         this.setState({ winner: event.target.value, loser: this.state.bet.better },
-        this.updateWinners()
+          this.updateWinners()
         )
       }
 
