@@ -65,12 +65,16 @@ class SimpleModal extends React.Component {
                             Who Won?
                         </Typography>
                         <Button
+                            variant='raised'
+                            color='primary'
                             onClick={this.handleClick}
                             value={this.props.better}
                         >
                             {this.props.better}
                         </Button>
                         <Button
+                            variant='raised'
+                            color='primary'
                             onClick={this.handleClick}
                             value={this.props.better_two}
                         >
