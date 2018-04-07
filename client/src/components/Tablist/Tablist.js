@@ -15,13 +15,13 @@ constructor(props){
 componentDidMount() {
   let value = 0;
   switch(window.location.pathname) {
-    case '/Detail':
+    case '/':
       value = 0;
       break;
-    case '/Friends':
+    case '/users':
       value = 1;
       break;
-    case '/':
+    case '/bets':
       value = 2;
       break;
   }
@@ -47,9 +47,9 @@ handleChange = (event, value) => {
         centered
         value={value} onChange={this.handleChange}
         >
-        <Tab label="Detail" href="Detail"/>
-        <Tab label="Friends" href="Friends"/>
-        <Tab label="Bets" href="/"/>
+        <Tab label="Profile" href="/"/>
+        <Tab label="Users" href="users"/>
+        <Tab label="Bets" href="bets"/>
       </Tabs>
     </Paper> 
     </div>

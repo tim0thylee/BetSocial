@@ -1,33 +1,37 @@
-import "./Nav.css"
+import "./Nav.css";
 import React from "react";
-import Auth from '../../utils/Auth'
+import Auth from '../../utils/Auth';
+import Tablist from '../Tablist';
+import MainImage from "../MainImage"
+
+let user = Auth.getUser();
 
 let Nav = () => (
       Auth.isUserAuthenticated() ? (
+  <div>
     <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
-        <a href="/" className="navbar-brand">
-          Bet Social!
-        </a>
+        <div className="navbar-brand">
+          Welcome {user}!
+        </div>     
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
         </a>
-        </div>
-        </div>
-        </nav>
+      </div>
+      </div>
+    </nav>
+  <div>
+      <MainImage />
+      <Tablist />
+    </div>
+  </div>
       ) : (
-         <nav className="navbar navbar-inverse navbar-top">
+      <nav className="navbar navbar-inverse navbar-top">
       <div className="container-fluid">
       <div className="navbar-header">
         <a href="/" className="navbar-brand">
           Bet Social!
-        </a>
-        <a href="/bets" className="navbar-brand">
-          Bets
-        </a>
-        <a href="/users" className="navbar-brand">
-          Users
         </a>
         <a href="/login" className="navbar-brand">
           Login
