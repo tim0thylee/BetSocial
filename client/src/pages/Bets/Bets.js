@@ -93,7 +93,11 @@ class Bets extends Component {
         winner: this.state.winner,
         loser: this.state.loser
       })
-        .then(res => this.loadBet())
+        .then(res => {
+          this.loadBet()
+          this.setState({ better_two : "", wager: "", description: "", validator: ""})
+        }
+        )
         .catch(err => console.log(err));
     }
   };
@@ -148,10 +152,10 @@ class Bets extends Component {
               <FormBtn
                 disabled={!(this.state.better && this.state.better_two && this.state.wager && this.state.description)}
                 onClick={this.handleFormSubmit}
+                className='submit'
               >
                 Submit Bet
               </FormBtn>
-              <Modal />
             </form>
           </PaperSheet>
           </Col>

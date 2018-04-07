@@ -12,9 +12,11 @@ h1, h2, h3 {
 
 .list-group-item {
     padding: 25px;
-    overflow-y: hidden
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
+
 .list-overflow-container {
-    overflow-y:hidden
+    overflow-y: auto;
 }
