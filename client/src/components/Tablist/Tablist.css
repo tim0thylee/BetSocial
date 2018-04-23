@@ -1,4 +1,4 @@
-span.jss49 {
+.jss37 {
     font-size: 12px;
     font-family: 'Open Sans', sans-serif;
 }
@@ -6,4 +6,9 @@ span.jss49 {
 a:hover{
     text-decoration: none;
     color: blue;
+}
+
+.paper{
+    width: 1489.2px;
+    margin: auto;
 }

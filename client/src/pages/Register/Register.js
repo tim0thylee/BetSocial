@@ -25,6 +25,7 @@ class Register extends Component {
     console.log('login: ' + userData.username)
     console.log('login: ' + userData.password)
 
+    console.log(userData)
 
     API.authenticateUser(userData)
       .then(res => {
@@ -72,7 +73,7 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.username&& this.state.password && this.state.password.length >= 6) {
+    if (this.state.username && this.state.password && this.state.password.length >= 6) {
       this.signUp();
     } else {
       this.setState({ errorMessage: "Please enter all required fields to sign up." })

@@ -40,7 +40,7 @@ handleChange = (event, value) => {
   const { value } = this.state;
 
    return (
-    <div>
+    <div className="paper">
     <Paper>
       <Tabs
         indicatorColor="primary"

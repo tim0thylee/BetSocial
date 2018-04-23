@@ -11,11 +11,13 @@ import MyProfile from "./pages/MyProfile";
 import UserProfile from "./pages/UserProfile";
 import Nav from "./components/Nav";
 import PrivateRoute from "./pages/PrivateRoute";
+import "./App.css";
+
 
 
 const App = () => (
 <Router>
-    <div>
+    <div className="app">
       <Nav />
       <Switch>
         <PrivateRoute exact path="/users/:id" component={UserProfile} />
