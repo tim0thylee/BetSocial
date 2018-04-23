@@ -60,35 +60,40 @@ class Detail extends Component {
 
   whoWon = event => {
     console.log("clicked: " + event.target.value)
+    
+    if (this.state.user === this.state.bet.better || this.state.user === this.state.bet.better_two || this.state.user === this.state.bet.validator) {
+      if (!this.state.bet.closed) {
 
-    if (!this.state.bet.closed) {
-      
-      if (event.target.value === this.state.bet.better) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-          this.updateWinners
-        )
-      }
-      else if (event.target.value === this.state.bet.better_two) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better },
-          this.updateWinners
-        )
-      }
+        if (event.target.value === this.state.bet.better) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
+            this.updateWinners
+          )
+        }
+        else if (event.target.value === this.state.bet.better_two) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better },
+            this.updateWinners
+          )
+        }
 
-    }
-    else  if (this.state.user === this.state.bet.validator){
-      if (event.target.value === this.state.bet.better) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-          this.updateWinners
-        )
       }
-      else if (event.target.value === this.state.bet.better_two) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better },
-          this.updateWinners
-        )
+      else if (this.state.user === this.state.bet.validator) {
+        if (event.target.value === this.state.bet.better) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
+            this.updateWinners
+          )
+        }
+        else if (event.target.value === this.state.bet.better_two) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better },
+            this.updateWinners
+          )
+        }
+      }
+      else {
+        alert("Bet is closed!")
       }
     }
-    else {
-      alert("Bet is closed!")
+    else{
+      alert("You cannot close this bet, you are not on of the parties involved!")
     }
   }
 
