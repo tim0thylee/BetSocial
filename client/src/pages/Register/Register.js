@@ -22,6 +22,9 @@ class Register extends Component {
       password: this.state.password
     };
 
+    console.log('login: ' + userData.username)
+    console.log('login: ' + userData.password)
+
     console.log(userData)
 
     API.authenticateUser(userData)
@@ -41,6 +44,10 @@ class Register extends Component {
       username: this.state.username,
       password: this.state.password
     };
+
+    console.log("sign up: " + userData.username)
+    console.log("sign up: " + userData.password)
+
 
     API.signUp(userData)
       .then(res => {
