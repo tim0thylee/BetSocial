@@ -22,14 +22,18 @@ class Register extends Component {
       password: this.state.password
     };
 
+    console.log('login: ' + userData.username)
+    console.log('login: ' + userData.password)
+
+
     API.authenticateUser(userData)
       .then(res => {
         // clear error message
         this.setState({ errorMessage: null });
-        Auth.authenticateUser(res.data.token);
+        Auth.authenticateUser(res.data.token, userData.username);
 
         // hard redirect to / to reload all the state and nav
-        window.location.href = "/login";
+        window.location.href = "/";
       })
       .catch(err => this.setState({ errorMessage: err.response.data.message }));
   };
@@ -39,6 +43,10 @@ class Register extends Component {
       username: this.state.username,
       password: this.state.password
     };
+
+    console.log("sign up: " + userData.username)
+    console.log("sign up: " + userData.password)
+
 
     API.signUp(userData)
       .then(res => {
