@@ -25,4 +25,4 @@ If the user clicks on the 'users' tab, it displays all users. On this page, the 
 
 If the user clicks on the 'bets' tab, it will bring them to the page where the user can create a bet. It also displays all registered bets from all users. The "Better" is automatically set to the logged in user. There is a drop-down menu for the rest of the registered users for "Better Two". The remaining "Wager" and "Description" fields are self-explanatory and are also required. The one optional field is for the "Validator". The role of the validator is explained above.
 
-![bets}(https://github.com/tim0thylee/BetSocial/blob/master/images/makebet.JPG)
+![bets](https://github.com/tim0thylee/BetSocial/blob/master/images/makebet.JPG)
