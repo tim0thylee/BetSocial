@@ -17,21 +17,12 @@ class Detail extends Component {
   };
 
   componentDidMount() {
-<<<<<<< HEAD
-    this.loadBet();
-    this.loadUser();
-
-  }
-
-  loadUser = () => {
-=======
     this.loadBet()
     this.loadUser()
 
   }
 
  loadUser = () => {
->>>>>>> e1bb20c1af8fd200d620cab46150d480240f7ccd
     let currentUser = Auth.getUser();
     this.setState({user: currentUser})
   }
@@ -101,25 +92,8 @@ class Detail extends Component {
         alert("Bet is closed!")
       }
     }
-<<<<<<< HEAD
-    else  if (this.state.user === this.state.bet.validator){
-      if (event.target.value === this.state.bet.better) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-          this.updateWinners
-        )
-      }
-      else if (event.target.value === this.state.bet.better_two) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better },
-          this.updateWinners
-        )
-      }
-    }
-    else{
-      alert('Bet is closed!')
-=======
     else{
       alert("You cannot close this bet, you are not one of the parties involved!")
->>>>>>> e1bb20c1af8fd200d620cab46150d480240f7ccd
     }
   }
 
