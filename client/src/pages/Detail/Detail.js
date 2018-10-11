@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import SimpleModalWrapped from "../../components/Modal";
 import "./Detail.css";
+import PaperSheet from "../../components/Paper";
 
 class Detail extends Component {
   state = {
@@ -16,12 +17,21 @@ class Detail extends Component {
   };
 
   componentDidMount() {
+<<<<<<< HEAD
     this.loadBet();
     this.loadUser();
 
   }
 
   loadUser = () => {
+=======
+    this.loadBet()
+    this.loadUser()
+
+  }
+
+ loadUser = () => {
+>>>>>>> e1bb20c1af8fd200d620cab46150d480240f7ccd
     let currentUser = Auth.getUser();
     this.setState({user: currentUser})
   }
@@ -59,21 +69,39 @@ class Detail extends Component {
 
   whoWon = event => {
     console.log("clicked: " + event.target.value)
+    
+    if (this.state.user === this.state.bet.better || this.state.user === this.state.bet.better_two || this.state.user === this.state.bet.validator) {
+      if (!this.state.bet.closed) {
 
-    if (!this.state.bet.closed) {
-      
-      if (event.target.value === this.state.bet.better) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-          this.updateWinners
-        )
-      }
-      else if (event.target.value === this.state.bet.better_two) {
-        this.setState({ winner: event.target.value, loser: this.state.bet.better },
-          this.updateWinners
-        )
-      }
+        if (event.target.value === this.state.bet.better) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
+            this.updateWinners()
+          )
+        }
+        else if (event.target.value === this.state.bet.better_two) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better },
+            this.updateWinners()
+          )
+        }
 
+      }
+      else if (this.state.user === this.state.bet.validator) {
+        if (event.target.value === this.state.bet.better) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
+            this.updateWinners()
+          )
+        }
+        else if (event.target.value === this.state.bet.better_two) {
+          this.setState({ winner: event.target.value, loser: this.state.bet.better },
+            this.updateWinners()
+          )
+        }
+      }
+      else {
+        alert("Bet is closed!")
+      }
     }
+<<<<<<< HEAD
     else  if (this.state.user === this.state.bet.validator){
       if (event.target.value === this.state.bet.better) {
         this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
@@ -88,6 +116,10 @@ class Detail extends Component {
     }
     else{
       alert('Bet is closed!')
+=======
+    else{
+      alert("You cannot close this bet, you are not one of the parties involved!")
+>>>>>>> e1bb20c1af8fd200d620cab46150d480240f7ccd
     }
   }
 
@@ -108,13 +140,16 @@ class Detail extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
+            <PaperSheet>
               <h1 className='title'>
                 {this.state.bet.better} bets {this.state.bet.better_two}
               </h1>
+            </PaperSheet>
           </Col>
         </Row>
         <Row>
           <Col size="md-6">
+          <PaperSheet>
             <article>
               <h1>Wager</h1>
               <h4>
@@ -133,8 +168,10 @@ class Detail extends Component {
                 {this.state.bet.validator}
               </h4>
             </article>
+            </PaperSheet>
           </Col>
           <Col size="md-6">
+            <PaperSheet>
             <article>
               <h1>Closed?</h1>
               <h4>
@@ -159,6 +196,7 @@ class Detail extends Component {
               better_two={this.state.bet.better_two}
               onClick={this.whoWon}
             />
+                </PaperSheet>
           </Col>
         </Row>
         <Row>

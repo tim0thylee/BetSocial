@@ -13,7 +13,7 @@ let Nav = () => (
       <div className="container-fluid">
       <div className="navbar-header">
         <div className="navbar-brand">
-          Welcome {user}!
+          Welcome {user}
         </div>     
         <a href="/logout" className="navbar-brand dropdown-menu-right">
           Logout
