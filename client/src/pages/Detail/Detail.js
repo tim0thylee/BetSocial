@@ -66,12 +66,12 @@ class Detail extends Component {
 
         if (event.target.value === this.state.bet.better) {
           this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-            this.updateWinners
+            this.updateWinners()
           )
         }
         else if (event.target.value === this.state.bet.better_two) {
           this.setState({ winner: event.target.value, loser: this.state.bet.better },
-            this.updateWinners
+            this.updateWinners()
           )
         }
 
@@ -79,12 +79,12 @@ class Detail extends Component {
       else if (this.state.user === this.state.bet.validator) {
         if (event.target.value === this.state.bet.better) {
           this.setState({ winner: event.target.value, loser: this.state.bet.better_two },
-            this.updateWinners
+            this.updateWinners()
           )
         }
         else if (event.target.value === this.state.bet.better_two) {
           this.setState({ winner: event.target.value, loser: this.state.bet.better },
-            this.updateWinners
+            this.updateWinners()
           )
         }
       }
@@ -93,7 +93,7 @@ class Detail extends Component {
       }
     }
     else{
-      alert("You cannot close this bet, you are not on of the parties involved!")
+      alert("You cannot close this bet, you are not one of the parties involved!")
     }
   }
 
